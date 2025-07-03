@@ -1,7 +1,3 @@
-Perfecto, Esteban. Aquí tenés un README adaptado y mejorado para el **curso AZ-104** (Administración de Microsoft Azure), manteniendo tu estilo profesional y accesible:
-
----
-
 # ☁️ Curso AZ-104: Administración de Microsoft Azure
 
 ¡Bienvenid@ al repositorio oficial del curso **AZ-104**! 🚀
