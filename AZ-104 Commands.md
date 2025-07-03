@@ -3,14 +3,14 @@
 [General](#general)
 
     [Instalar el modulo de Azure en Powershell local](#instalar-el-modulo-de-azure-en-powershell-local)
-    
-    [Instalar Modulo ActiveDirectory](#instalar-modulo-activedirectory)
-    
-    [Conectarse a Azure desde Powershell local](#conectarse-a-azure-desde-powershell-local)
-    
-    [Obtener Ayuda Comando de Powershell](#obtener-ayuda-comando-de-powershell)
-    
-    [Comandos Powershell en varias lineas](#comandos-powershell-en-varias-lineas)
+
+[Instalar Modulo ActiveDirectory](#instalar-modulo-activedirectory)
+
+[Conectarse a Azure desde Powershell local](#conectarse-a-azure-desde-powershell-local)
+
+[Obtener Ayuda Comando de Powershell](#obtener-ayuda-comando-de-powershell)
+
+[Comandos Powershell en varias lineas](#comandos-powershell-en-varias-lineas)
 
 [Active Directory](#active-directory)
 
