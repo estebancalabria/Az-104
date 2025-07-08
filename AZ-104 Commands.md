@@ -1,113 +1,17 @@
 # Comandos Az-104
 
+# Indice
+
 * [General](#general)
-    * [Instalar el modulo de Azure en Powershell local](#instalar-el-modulo-de-azure-en-powershell-local)
-    * [Instalar Modulo ActiveDirectory](#instalar-modulo-activedirectory)
-    * [Conectarse a Azure desde Powershell local](#conectarse-a-azure-desde-powershell-local)
-    * [Obtener Ayuda Comando de Powershell](#obtener-ayuda-comando-de-powershell)
-    * [Comandos Powershell en varias lineas](#comandos-powershell-en-varias-lineas)
-
-[Active Directory](#active-directory)
-
-[Listar Usuarios AD](#listar-usuarios-ad)
-
-[Azure AD \- Crear Usuario](#azure-ad---crear-usuario)
-
-[Listar los Resource Providers](#listar-los-resource-providers)
-
-[Ver Rol RBC Asignado a un usuario](#ver-rol-rbc-asignado-a-un-usuario)
-
-[Asignar un rol a un usuario existente](#asignar-un-rol-a-un-usuario-existente)
-
-[Ver la definición de un rol](#ver-la-definición-de-un-rol)
-
-[Crear un Rol Por CLI](#crear-un-rol-por-cli)
-
-[Borrar un Rol Creado](#borrar-un-rol-creado)
-
-[Resource Groups](#resource-groups)
-
-[Crear un Resource Group](#crear-un-resource-group)
-
-[Powershell](#powershell)
-
-[Az](#az)
-
-[Borrar un Resource Group](#borrar-un-resource-group)
-
-[Hacer Deploy de un ARM Template](#hacer-deploy-de-un-arm-template)
-
-[Virtual Networks](#virtual-networks)
-
-[Crear Virtual Networks](#crear-virtual-networks)
-
-[Crear Subnet](#crear-subnet)
-
-[Powershell](#powershell-1)
-
-[Az](#az-1)
-
-[Network Securty Group](#network-securty-group)
-
-[Crear Un Network Security Group](#crear-un-network-security-group)
-
-[Powershell](#powershell-2)
-
-[Az](#az-2)
-
-[Agregar Regla a un NSG](#agregar-regla-a-un-nsg)
-
-[Disco](#disco)
-
-[Crear un Disco para una VM](#crear-un-disco-para-una-vm)
-
-[IP Publica](#ip-publica)
-
-[Crear Una IP Pública](#crear-una-ip-pública)
-
-[Network Security Group](#network-security-group)
-
-[Crear Un Network Security Group](#crear-un-network-security-group-1)
-
-[Virtual Machines](#virtual-machines)
-
-[Habilitar Ping en una maquina virtual](#habilitar-ping-en-una-maquina-virtual)
-
-[Reiniciar Maquina Virtual](#reiniciar-maquina-virtual)
-
-[Listar imagenes de maquinas virtuales](#listar-imagenes-de-maquinas-virtuales)
-
-[Crear una máquina virtual nueva](#crear-una-máquina-virtual-nueva)
-
-[Default](#default)
-
-[En una Vnet existente](#en-una-vnet-existente)
-
-[En un VNet y NSG](#en-un-vnet-y-nsg)
-
-[Especificando uncls Usuario y Pass](#especificando-uncls-usuario-y-pass)
-
-[Crear Credencial](#crear-credencial)
-
-[CrearVM](#crearvm)
-
-[Especificar Tamaño VM y Segundo Disco](#especificar-tamaño-vm-y-segundo-disco)
-
-[Reiniciar una VM](#reiniciar-una-vm)
-
-[Utils](#utils)
-
-[Instalar IIS en una maquina](#instalar-iis-en-una-maquina)
-
-[Listar Los trabajos Pendientes](#listar-los-trabajos-pendientes)
-
-[Crear un root certificate](#crear-un-root-certificate)
-
-## 
-
-## 
-
-## 
+* [Active Directory](#active-directory)
+* [Resource Groups](#resource-groups)
+* [Virtual Networks](#virtual-networks)
+* [Network Securty Group](#network-securty-group)
+* [Disco](#disco)
+* [IP Publica](#ip-publica)
+* [Network Security Group](#network-security-group)
+* [Virtual Machines](#virtual-machines)
+* [Utils](#utils) 
 
 # General {#general}
 
@@ -129,13 +33,11 @@ Get-Help New-AzDisk
 Get-Help New-AzDisk \-Force  
 Get-Help New-AzDisk \-Example
 
-## 
-
 ## Comandos Powershell en varias lineas {#comandos-powershell-en-varias-lineas}
 
  Utilizar bactick al final de cada linea \`
 
-# 
+---
 
 # Active Directory {#active-directory}
 
@@ -201,8 +103,8 @@ New-AzRoleDefinition \-InputFile ./myVirtualMachineContributor.json
 ## Borrar un Rol Creado {#borrar-un-rol-creado}
 
 Remove-AzRoleDefinition \-Name "DemoNuevoRol"
-
-# 
+ 
+---
 
 # Resource Groups {#resource-groups}
 
@@ -223,7 +125,21 @@ az group create \--name Rg-Az104-Clase-Cuatro \--location eastus
 ## Hacer Deploy de un ARM Template {#hacer-deploy-de-un-arm-template}
 
 New-AzResourceGroupDeployment \-TemplateFile ./arm-many-disks-template.json \-ResourceGroupName Rg-Az104-Clase-Cuatro
+---
 
+# ARM Templates
+
+Desplegar un template
+```az
+  > az deployment group create --resource-group Rg-Az104-Clase-Dos --template-file ./create-disk-template.json
+  > az deployment group create --resource-group Rg-Az104-Clase-Dos --template-file ./create-disk-template.json --parameters diskName="vmdisk_1024GB_SSD_2" location="westus"
+```
+```powershell
+ > New-AzResourceGroupDeployment -ResourceGroupName Rg-Az104-Clase-Dos -TemplateFile ./create-disk-template.json
+ > New-AzResourceGroupDeployment -ResourceGroupName Rg-Az104-Clase-Dos -TemplateFile ./create-disk-template.json -diskName vmdisk_1024GB_SSD_5 -location westus
+```
+
+---
 # Virtual Networks {#virtual-networks}
 
 ## Crear Virtual Networks {#crear-virtual-networks}
