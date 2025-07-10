@@ -38,15 +38,18 @@ Get-Help New-AzDisk \-Example
  Utilizar bactick al final de cada linea \`
 
 ---
+
 # Resource Group 
 
 **Powershell**
 ```powershell
 New-AzResourceGroup \-Name Demo \-Location eastus
-``
-### Az {#az}
+```
 
+**Az**
+```az
 az group create \--name Rg-Az104-Clase-Cuatro \--location eastus                                                                      
+```
 
 ## Borrar un Resource Group {#borrar-un-resource-group}
 
