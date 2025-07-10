@@ -3,8 +3,8 @@
 # Indice
 
 * [General](#general)
-* [Active Directory](#active-directory)
 * [Resource Groups](#resource-groups)
+* [Active Directory](#active-directory)
 * [Virtual Networks](#virtual-networks)
 * [Network Securty Group](#network-securty-group)
 * [Disco](#disco)
@@ -38,6 +38,45 @@ Get-Help New-AzDisk \-Example
  Utilizar bactick al final de cada linea \`
 
 ---
+# Resource Group 
+
+**Powershell**
+```powershell
+New-AzResourceGroup \-Name Demo \-Location eastus
+``
+### Az {#az}
+
+az group create \--name Rg-Az104-Clase-Cuatro \--location eastus                                                                      
+
+## Borrar un Resource Group {#borrar-un-resource-group}
+
+ Remove-AzResourceGroup \-Name Demo
+
+
+
+---
+
+
+
+# IAC : ARM Templates
+
+## Hacer Deploy de un ARM Template {#hacer-deploy-de-un-arm-template}
+**az**
+```az
+  > az deployment group create --resource-group Rg-Az104-Clase-Dos --template-file ./create-disk-template.json
+  > az deployment group create --resource-group Rg-Az104-Clase-Dos --template-file ./create-disk-template.json --parameters diskName="vmdisk_1024GB_SSD_2" location="westus"
+```
+```powershell
+ > New-AzResourceGroupDeployment -ResourceGroupName Rg-Az104-Clase-Dos -TemplateFile ./create-disk-template.json
+ > New-AzResourceGroupDeployment -ResourceGroupName Rg-Az104-Clase-Dos -TemplateFile ./create-disk-template.json -diskName vmdisk_1024GB_SSD_5 -location westus
+```
+
+
+
+---
+
+
+
 
 # Active Directory {#active-directory}
 
@@ -104,40 +143,6 @@ New-AzRoleDefinition \-InputFile ./myVirtualMachineContributor.json
 
 Remove-AzRoleDefinition \-Name "DemoNuevoRol"
  
----
-
-# Resource Groups {#resource-groups}
-
-## Crear un Resource Group {#crear-un-resource-group}
-
-### Powershell {#powershell}
-
-New-AzResourceGroup \-Name Demo \-Location eastus
-
-### Az {#az}
-
-az group create \--name Rg-Az104-Clase-Cuatro \--location eastus                                                                      
-
-## Borrar un Resource Group {#borrar-un-resource-group}
-
- Remove-AzResourceGroup \-Name Demo
-
-## Hacer Deploy de un ARM Template {#hacer-deploy-de-un-arm-template}
-
-New-AzResourceGroupDeployment \-TemplateFile ./arm-many-disks-template.json \-ResourceGroupName Rg-Az104-Clase-Cuatro
----
-
-# ARM Templates
-
-Desplegar un template
-```az
-  > az deployment group create --resource-group Rg-Az104-Clase-Dos --template-file ./create-disk-template.json
-  > az deployment group create --resource-group Rg-Az104-Clase-Dos --template-file ./create-disk-template.json --parameters diskName="vmdisk_1024GB_SSD_2" location="westus"
-```
-```powershell
- > New-AzResourceGroupDeployment -ResourceGroupName Rg-Az104-Clase-Dos -TemplateFile ./create-disk-template.json
- > New-AzResourceGroupDeployment -ResourceGroupName Rg-Az104-Clase-Dos -TemplateFile ./create-disk-template.json -diskName vmdisk_1024GB_SSD_5 -location westus
-```
 
 ---
 # Virtual Networks {#virtual-networks}
