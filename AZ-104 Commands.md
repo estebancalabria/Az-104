@@ -15,23 +15,43 @@
 
 # General {#general}
 
+## Instalar Chocolately
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+## Instalar IIS (Windows 11)
+
+```powershell
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -All
+```
+
 ## Instalar el modulo de Azure en Powershell local {#instalar-el-modulo-de-azure-en-powershell-local}
 
+```powershell
 Install-Module \-Name Az \-Scope CurrentUser \-Repository PSGallery \-Force
+```
 
-###         Instalar Modulo ActiveDirectory {#instalar-modulo-activedirectory}
+### Instalar Modulo ActiveDirectory {#instalar-modulo-activedirectory}
 
+```powershell
 Install-Module AzureAD \-Force
+```
 
 ## Conectarse a Azure desde Powershell local {#conectarse-a-azure-desde-powershell-local}
 
+```powershell
 Connect-AzAccount
+```
 
 ## Obtener Ayuda Comando de Powershell {#obtener-ayuda-comando-de-powershell}
 
+```powershell
 Get-Help New-AzDisk   
 Get-Help New-AzDisk \-Force  
 Get-Help New-AzDisk \-Example
+```
 
 ## Comandos Powershell en varias lineas {#comandos-powershell-en-varias-lineas}
 
@@ -53,8 +73,9 @@ az group create \--name Rg-Az104-Clase-Cuatro \--location eastus
 
 ## Borrar un Resource Group {#borrar-un-resource-group}
 
+```powershell
  Remove-AzResourceGroup \-Name Demo
-
+```
 
 
 ---
