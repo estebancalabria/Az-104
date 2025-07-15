@@ -21,47 +21,38 @@
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-## Instalar IIS (Windows 11)
+- ## Instalar IIS (Windows 11)
 
 ```powershell
 Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -All
 ```
 
-## Habilitar el ping
-
+- ## Habilitar el ping
 ```powershell
 New-NetFirewallRule -Name AllowPing -DisplayName "Permitir ICMPv4" -Protocol ICMPv4 -IcmpType 8 -Direction Inbound -Action Allow -Enabled True
 
 ```
-
-
-## Instalar el modulo de Azure en Powershell local {#instalar-el-modulo-de-azure-en-powershell-local}
+- ## Instalar el modulo de Azure en Powershell local 
 
 ```powershell
-Install-Module \-Name Az \-Scope CurrentUser \-Repository PSGallery \-Force
+Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 ```
-
-### Instalar Modulo ActiveDirectory {#instalar-modulo-activedirectory}
+- ## Instalar Modulo ActiveDirectory 
 
 ```powershell
 Install-Module AzureAD -Force
 ```
-
-## Conectarse a Azure desde Powershell local {#conectarse-a-azure-desde-powershell-local}
-
+- ## Conectarse a Azure desde Powershell local 
 ```powershell
 Connect-AzAccount
 ```
-
-## Obtener Ayuda Comando de Powershell {#obtener-ayuda-comando-de-powershell}
-
+- ## Obtener Ayuda Comando de Powershell {#obtener-ayuda-comando-de-powershell}
 ```powershell
 Get-Help New-AzDisk   
 Get-Help New-AzDisk -Force  
 Get-Help New-AzDisk -Example
 ```
-
-## Comandos Powershell en varias lineas {#comandos-powershell-en-varias-lineas}
+- ## Comandos Powershell en varias lineas {#comandos-powershell-en-varias-lineas}
 
  Utilizar bactick al final de cada linea \`
 
