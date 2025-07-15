@@ -27,6 +27,14 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -All
 ```
 
+## Habilitar el ping
+
+```powershell
+New-NetFirewallRule -Name AllowPing -DisplayName "Permitir ICMPv4" -Protocol ICMPv4 -IcmpType 8 -Direction Inbound -Action Allow -Enabled True
+
+```
+
+
 ## Instalar el modulo de Azure en Powershell local {#instalar-el-modulo-de-azure-en-powershell-local}
 
 ```powershell
