@@ -2,8 +2,8 @@
 
 # Indice
 
-* [General](#general)
-* [Resource Groups](#resource-groups)
+* [General]
+* [Resource Groups]
 * [Active Directory](#active-directory)
 * [Virtual Networks](#virtual-networks)
 * [Network Securty Group](#network-securty-group)
@@ -13,7 +13,7 @@
 * [Virtual Machines](#virtual-machines)
 * [Utils](#utils) 
 
-# General {#general}
+# General
 
 ## Instalar Chocolately
 
@@ -36,7 +36,7 @@ Install-Module \-Name Az \-Scope CurrentUser \-Repository PSGallery \-Force
 ### Instalar Modulo ActiveDirectory {#instalar-modulo-activedirectory}
 
 ```powershell
-Install-Module AzureAD \-Force
+Install-Module AzureAD -Force
 ```
 
 ## Conectarse a Azure desde Powershell local {#conectarse-a-azure-desde-powershell-local}
@@ -49,8 +49,8 @@ Connect-AzAccount
 
 ```powershell
 Get-Help New-AzDisk   
-Get-Help New-AzDisk \-Force  
-Get-Help New-AzDisk \-Example
+Get-Help New-AzDisk -Force  
+Get-Help New-AzDisk -Example
 ```
 
 ## Comandos Powershell en varias lineas {#comandos-powershell-en-varias-lineas}
@@ -63,24 +63,21 @@ Get-Help New-AzDisk \-Example
 
 **Powershell**
 ```powershell
-New-AzResourceGroup \-Name Demo \-Location eastus
+New-AzResourceGroup -Name Demo -Location eastus
 ```
 
 **Az**
 ```az
-az group create \--name Rg-Az104-Clase-Cuatro \--location eastus                                                                      
+az group create --name Rg-Az104-Clase-Cuatro --location eastus                                                                      
 ```
 
 ## Borrar un Resource Group {#borrar-un-resource-group}
 
 ```powershell
- Remove-AzResourceGroup \-Name Demo
+ Remove-AzResourceGroup -Name Demo
 ```
 
-
 ---
-
-
 
 # IAC : ARM Templates
 
