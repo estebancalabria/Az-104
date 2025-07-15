@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "diskName": {
+            "value": "vmdisk_1024GB_SSD"
+        },
+        "location": {
+            "value": "westus"
+        },
+        "sku": {
+            "value": "Premium_LRS"
+        },
+        "diskSizeGb": {
+            "value": 1024
+        },
+        "sourceResourceId": {
+            "value": ""
+        },
+        "hyperVGeneration": {
+            "value": ""
+        },
+        "diskEncryptionSetType": {
+            "value": "EncryptionAtRestWithPlatformKey"
+        },
+        "createOption": {
+            "value": "empty"
+        },
+        "dataAccessAuthMode": {
+            "value": "None"
+        },
+        "networkAccessPolicy": {
+            "value": "AllowAll"
+        },
+        "publicNetworkAccess": {
+            "value": "Enabled"
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "diskName": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2022-03-02",
+            "type": "Microsoft.Compute/disks",
+            "name": "[parameters('diskName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "creationData": {
+                    "createOption": "empty"
+                },
+                "diskSizeGB": "1024",
+                "encryption": {
+                    "type": "EncryptionAtRestWithPlatformKey"
+                },
+                "dataAccessAuthMode": "None",
+                "networkAccessPolicy": "AllowAll",
+                "publicNetworkAccess": "Enabled"
+            },
+            "sku": {
+                "name": "Premium_LRS"
+            },
+            "tags": {}
+        }
+    ]
+}
