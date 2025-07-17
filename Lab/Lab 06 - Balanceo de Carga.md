@@ -34,8 +34,8 @@ Lo hacemos con el portal:
 * Source : (Mi Ip Local)
 * Destination : 10.1.0.0/16
 * Action : Allow
-
-  **HTTP**
+   
+**HTTP**
 * Priority : 110
 * Name : Allow-MyIpAddress-2-vnet10.1-HTTPInbound
 * Port : 80
@@ -43,8 +43,8 @@ Lo hacemos con el portal:
 * Source : (Mi Ip Local)
 * Destination : 10.1.0.0/16
 * Action : Allow
-
-  **HTTPS**
+   
+**HTTPS**
 * Priority : 120
 * Name : Allow-MyIpAddress-2-vnet10.1-HTTPSInbound
 * Port : 443
