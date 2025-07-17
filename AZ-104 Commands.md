@@ -2,10 +2,10 @@
 
 # Indice
 
-* [General]
+* ⚙️General
 * [Resource Groups]
 * [Active Directory](#active-directory)
-* [Virtual Networks]
+* 🌐Virtual Networks
 * [Network Securty Group](#network-securty-group)
 * [Disco](#disco)
 * [IP Publica](#ip-publica)
@@ -13,7 +13,7 @@
 * [Virtual Machines](#virtual-machines)
 * [Utils](#utils) 
 
-# General
+# ⚙️General
 
 - ## Instalar Chocolately
 
@@ -163,15 +163,15 @@ New-AzRoleDefinition \-InputFile ./myVirtualMachineContributor.json
 Remove-AzRoleDefinition \-Name "DemoNuevoRol"
  
 ---
-# Virtual Networks 
+# 🌐 Virtual Networks 
 
-* ## Crear Virtual Networks
+- ## Crear Virtual Networks
 
 ```powershell
 New-AzVirtualNetwork -Name Vnet-RRHH -ResourceGroupName Az104-Clase-Cuatro -Location eastus -AddressPrefix 10.1.0.0/16
 ```
 
-## Crear Subnet 
+- ## Crear Subnet 
 
 **poweshell**
 
