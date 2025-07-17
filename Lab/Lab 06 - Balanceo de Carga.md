@@ -52,10 +52,11 @@ Lo hacemos con el portal:
 * Source : (Mi Ip Local)
 * Destination : 10.1.0.0/16
 * Action : Allow
+   
 6. Crear 2 VMs, una en cada Subnet
-
+   
 > Lo creamos por el portal
-
+   
 7. Conectarnos a las virtuales por RDP y habilitar el pint y el IIS
 
 ``` powershell
@@ -75,15 +76,11 @@ Modificar el archivo C:\inetpub\wwwroot\iistart
 </body>
 </html>
 ```
-
+   
 9. Verificar acceder al home del IIS tanto desde la VM como desde mi pc LOCAL
-
-10. 
-11. 
-
-
-
-12. 
-13.  
-
-3. 
+   
+10. Crear el Load Balancer
+   
+> Lo hacemos desde el portal
+   
+11. Probar acceder a las pc por la ip publica del load balancer
