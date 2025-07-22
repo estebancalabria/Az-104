@@ -295,7 +295,17 @@ New-AzVM \-Name Vm-RRHh \-ResourceGroupName AZ104-Clase-Cuatro \-Image Win2019Da
 
 ## Reiniciar una VM {#reiniciar-una-vm}
 
+```bash
 az vm restart \-n myAz104Vm \-g Az104-Clase-Dos
+```
+
+# App Service
+
+Deploy de una app en un creando App Service y Plan Nuevo
+```
+az webapp up --resource-group <NOMBRE-RESOURCE-GROUP> --name <NOMBRE-APPSERVICE-CREAR> --plan <NOMBRE-PLAN-CREAR>
+```
+
 
 # Utils {#utils}
 
