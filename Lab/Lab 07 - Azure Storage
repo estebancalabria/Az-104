@@ -1,0 +1,14 @@
+# Laboratorio Azure Storage
+
+1. Crear el Resource Group
+2. Crear dos VM
+3. Crear un Storage Account
+4. Crear un File Share Desde el Storage Account
+5. Montar el file share en ambas maquinas virtuales
+6. Crear un container publico y subir un archivi
+7. Acceder al archivo por su URL
+8. Crear un container Privado
+9. Subir un archivo
+11.Probar que no se puede leer por url
+12. Generar un SAS
+13.Acceder al archivo por medio del SAS

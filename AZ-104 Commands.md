@@ -2,10 +2,10 @@
 
 # Indice
 
-* [General](#general)
-* [Resource Groups](#resource-groups)
+* ⚙️General
+* [Resource Groups]
 * [Active Directory](#active-directory)
-* [Virtual Networks](#virtual-networks)
+* 🌐Virtual Networks
 * [Network Securty Group](#network-securty-group)
 * [Disco](#disco)
 * [IP Publica](#ip-publica)
@@ -13,47 +13,46 @@
 * [Virtual Machines](#virtual-machines)
 * [Utils](#utils) 
 
-# General {#general}
+# ⚙️General
 
-## Instalar Chocolately
+- ## Instalar Chocolately
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-## Instalar IIS (Windows 11)
+- ## Instalar IIS (Windows 11)
 
 ```powershell
 Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -All
 ```
 
-## Instalar el modulo de Azure en Powershell local {#instalar-el-modulo-de-azure-en-powershell-local}
+- ## Habilitar el ping
+```powershell
+New-NetFirewallRule -Name AllowPing -DisplayName "Permitir ICMPv4" -Protocol ICMPv4 -IcmpType 8 -Direction Inbound -Action Allow -Enabled True
+
+```
+- ## Instalar el modulo de Azure en Powershell local 
 
 ```powershell
-Install-Module \-Name Az \-Scope CurrentUser \-Repository PSGallery \-Force
+Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
 ```
-
-### Instalar Modulo ActiveDirectory {#instalar-modulo-activedirectory}
+- ## Instalar Modulo ActiveDirectory 
 
 ```powershell
-Install-Module AzureAD \-Force
+Install-Module AzureAD -Force
 ```
-
-## Conectarse a Azure desde Powershell local {#conectarse-a-azure-desde-powershell-local}
-
+- ## Conectarse a Azure desde Powershell local 
 ```powershell
 Connect-AzAccount
 ```
-
-## Obtener Ayuda Comando de Powershell {#obtener-ayuda-comando-de-powershell}
-
+- ## Obtener Ayuda Comando de Powershell {#obtener-ayuda-comando-de-powershell}
 ```powershell
 Get-Help New-AzDisk   
-Get-Help New-AzDisk \-Force  
-Get-Help New-AzDisk \-Example
+Get-Help New-AzDisk -Force  
+Get-Help New-AzDisk -Example
 ```
-
-## Comandos Powershell en varias lineas {#comandos-powershell-en-varias-lineas}
+- ## Comandos Powershell en varias lineas {#comandos-powershell-en-varias-lineas}
 
  Utilizar bactick al final de cada linea \`
 
@@ -61,26 +60,22 @@ Get-Help New-AzDisk \-Example
 
 # Resource Group 
 
+- ## Crear Resource Group 
 **Powershell**
 ```powershell
-New-AzResourceGroup \-Name Demo \-Location eastus
+New-AzResourceGroup -Name Demo -Location eastus
 ```
-
 **Az**
 ```az
-az group create \--name Rg-Az104-Clase-Cuatro \--location eastus                                                                      
+az group create --name Rg-Az104-Clase-Cuatro --location eastus                                                                      
 ```
-
-## Borrar un Resource Group {#borrar-un-resource-group}
+- ## Borrar un Resource Group 
 
 ```powershell
- Remove-AzResourceGroup \-Name Demo
+ Remove-AzResourceGroup -Name Demo
 ```
 
-
 ---
-
-
 
 # IAC : ARM Templates
 
@@ -167,54 +162,61 @@ New-AzRoleDefinition \-InputFile ./myVirtualMachineContributor.json
 
 Remove-AzRoleDefinition \-Name "DemoNuevoRol"
  
-
 ---
-# Virtual Networks {#virtual-networks}
+# 🌐 Virtual Networks 
 
-## Crear Virtual Networks {#crear-virtual-networks}
+- ## Crear Virtual Networks
 
- New-AzVirtualNetwork \-Name Vnet-RRHH \-ResourceGroupName Az104-Clase-Cuatro \-Location eastus \-AddressPrefix 10.1.0.0/16
+```powershell
+New-AzVirtualNetwork -Name Vnet-RRHH -ResourceGroupName Az104-Clase-Cuatro -Location eastus -AddressPrefix 10.1.0.0/16
+```
 
-## Crear Subnet {#crear-subnet}
+- ## Crear Subnet 
 
-### Powershell {#powershell-1}
+**poweshell**
 
+```powershell
 $vnet \= Get-AzVirtualNetwork \-Name VNet-RRHH
 
 Add-AzVirtualNetworkSubnetConfig \-Name default \-VirtualNetwork $vnet \-AddressPrefix 10.1.0.0/24  
 $vnet | Set-AzVirtualNetwork     
 //Set-AzVirtualNetwork \-VirtualNetwork $vnet
+```
 
-### Az {#az-1}
+**Az**
 
+```az
 az network vnet subnet create \--resource-group Rg-Az104-Clase-Diez \--vnet-name VNet-Az104-Marvel \--name Subnet-Capitan-America \--address-prefixes 10.0.1.0/24
+```
 
-# 
 
-# Network Securty Group {#network-securty-group}
+---
 
-## Crear Un Network Security Group {#crear-un-network-security-group}
+# Network Securty Group 
 
-### Powershell {#powershell-2}
+## Crear Un Network Security Group
 
-New-AzNetworkSecurityGroup \`  
-\-Name Nsg-Default \`  
-\-Location eastus \`  
-\-ResourceGroupName Az104-Clase-Cuatro
+**Powershell**
 
-### Az {#az-2}
+```powershell
+New-AzNetworkSecurityGroup -Name Nsg-Default -Location eastus -ResourceGroupName Az104-Clase-Cuatro
+```
 
-az network nsg create \`  
-\--resource-group Rg-Az104-Clase-Diez \`  
-\--name Nsg-Gob
+**Az**
+
+```
+az network nsg create --resource-group Rg-Az104-Clase-Diez --name Nsg-Gob
+``
 
 ## Agregar Regla a un NSG {#agregar-regla-a-un-nsg}
 
-$nsg \= Get-AzNetworkSecurityGroup \-Name NSG-Default \-ResourceGroupName Az104-Clase-Cuatro
+```powershell
+$nsg = Get-AzNetworkSecurityGroup -Name NSG-Default -ResourceGroupName Az104-Clase-Cuatro
 
-Add-AzNetworkSecurityRuleConfig \-Name Allow-Rdp \-Description "Permitir RDP" \-Priority 100 \-Direction inbound \-SourceAddressPrefix \* \-SourcePortRange \* \-DestinationAddressPrefix 10.0.0.4 \-DestinationPortRange 3389 \-NetworkSecurityGroup $nsg \-Protocol tcp \-Access Allow
+Add-AzNetworkSecurityRuleConfig -Name Allow-Rdp -Description "Permitir RDP" -Priority 100 -Direction inbound -SourceAddressPrefix * -SourcePortRange * -DestinationAddressPrefix 10.0.0.4 -DestinationPortRange 3389 -NetworkSecurityGroup $nsg -Protocol tcp -Access Allow
 
-Set-AzNetworkSecurityGroup \-NetworkSecurityGroup $nsg
+Set-AzNetworkSecurityGroup -NetworkSecurityGroup $nsg
+```
 
 # Disco {#disco}
 
@@ -264,25 +266,27 @@ New-AzVM \-Name myAz104VMSecundaria \-ResourceGroupName AZ104-Clase-Tres \-Image
 
 New-AzVM \-Name myAz104VMSecundaria \-ResourceGroupName AZ104-Clase-Tres \-Image Win2019DataCenter \-VirtualNetworkName myAz104VNet \-SubnetName uno \-Location eastus \-SecurityGroupName NSG-Default
 
-### 
+---
 
-### Especificando uncls Usuario y Pass {#especificando-uncls-usuario-y-pass}
 
-#### Crear Credencial {#crear-credencial}
+# 💻 Virtual Machines
 
-$Credential \= New-Object \-TypeName System.Management.Automation.PSCredential \-ArgumentList "AzureUser", (ConvertTo-SecureString \-String "Pa55w.rd1234" \-AsPlainText \-Force)
+## Crear Credencial 
 
-$cred \= New-Object \`  
-       \-TypeName System.Management.Automation.PSCredential \`  
-        ("AzureUser", (ConvertTo-SecureString \-String "Pa55w.rd1234" \-AsPlainText \-Force))    
+```powershell
+$pass = ConvertTo-SecureString -String (Read-Host "Ingrese su Pass") -AsPlainText -Force    
 
-#### CrearVM {#crearvm}
+$cred = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList "AzureUser", $pass
 
-New-AzVM \`  
-\-Name myVm \`  
-\-ResourceGroupName SandBox \`  
-\-Image Win2019DataCenter \`  
-\-Credential $Credential
+```
+
+## Listar Imgenes VM
+
+## CrearVM 
+
+```powershell
+New-AzVM -Name myVm -ResourceGroupName SandBox -Image Win2019DataCenter -Credential $Credential
+```
 
 ### Especificar Tamaño VM y Segundo Disco {#especificar-tamaño-vm-y-segundo-disco}
 
