@@ -1,9 +1,9 @@
 # Soluciones de computo (AppService)
 
-La soluciones de computo para desplegar aplicaciones
-    * IaaS (Infraestructura comoo servicio) : Para control total
+La soluciones de computo para desplegar aplicaciones  
+* IaaS (Infraestructura comoo servicio) : Para control total
           * Virtual Machine
-    * PaaS (Plataforma como servicio) : Para desplegar desde el codigo fuente y Azure maneja la Infraestructura
+* PaaS (Plataforma como servicio) : Para desplegar desde el codigo fuente y Azure maneja la Infraestructura
           * App Service
           * Contenedores
                 * App Service
