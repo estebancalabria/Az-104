@@ -10,8 +10,9 @@
 * [Disco](#disco)
 * [IP Publica](#ip-publica)
 * [Network Security Group](#network-security-group)
-* [Virtual Machines](#virtual-machines)
-* [Utils](#utils) 
+* 💻 Virtual Machines
+* ☁️ AppService
+* ⛏️ Utils
 
 # ⚙️General
 
@@ -268,7 +269,6 @@ New-AzVM \-Name myAz104VMSecundaria \-ResourceGroupName AZ104-Clase-Tres \-Image
 
 ---
 
-
 # 💻 Virtual Machines
 
 ## Crear Credencial 
@@ -305,7 +305,9 @@ New-AzVM \-Name Vm-RRHh \-ResourceGroupName AZ104-Clase-Cuatro \-Image Win2019Da
 az vm restart \-n myAz104Vm \-g Az104-Clase-Dos
 ```
 
-# App Service
+---
+
+# ☁️ App Service
 
 ## Deploy de una app en un creando App Service y Plan Nuevo
    
@@ -324,20 +326,26 @@ cd..
 az webapp deployment source config-zip --resource-group <nombre-resource-group> --name <nombre-app-service-existente> --src ./pub/pub.zip
 ```
 
+---
+
 # ⛏️ Utils {#utils}
 
 ## Instalar IIS en una maquina {#instalar-iis-en-una-maquina}
 
+```powershell
 Install-WindowsFeature \-name Web-Server \-IncludeManagementTools
+```
 
 ## Listar Los trabajos Pendientes {#listar-los-trabajos-pendientes}
 
+```powershell
 Get-Job
+```
 
 ### Crear un root certificate {#crear-un-root-certificate}
 
-$cert \= New-SelfSignedCertificate \-Type Custom \-KeySpec Signature \-Subject "CN=P2SRootCert" \-KeyExportPolicy Exportable   
-\-HashAlgorithm sha256 \-KeyLength 2048   
-\-CertStoreLocation "Cert:\\CurrentUser\\My" \-KeyUsageProperty Sign \-KeyUsage CertSign
+```powershell
+$cert = New-SelfSignedCertificate -Type Custom -KeySpec Signature -Subject "CN=P2SRootCert" -KeyExportPolicy Exportable -HashAlgorithm sha256 -KeyLength 2048  -CertStoreLocation "Cert:\\CurrentUser\\My" -KeyUsageProperty Sign -KeyUsage CertSign
+```
 
 New-SelfSignedCertificate \-Type Custom \-DnsName P2SChildCert \-KeySpec Signature \` \-Subject "CN=P2SChildCert" \-KeyExportPolicy Exportable \-HashAlgorithm sha256 \-KeyLength 2048 \-CertStoreLocation "Cert:\\CurrentUser\\My" \-Signer $cert \-TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.2")  
