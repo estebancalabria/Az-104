@@ -46,8 +46,27 @@ Luego pararnos en la carpeta
 
 ```
 
+## Scenario 2 : Deployment en un App Service Rapida
 
-## Scenario 2 : Deployment en un App Service desde una image de Docker
+1. Crear una aplicacion de .NET en el CLi
+
+```bash
+  dotnet new mvc --name DemoApp
+```
+Luego pararnos en la carpeta   
+
+```bash
+  cd DemoApp
+```
+
+2. Crear App, Crear Plan y Deplegar en un solo comando
+
+```
+az webapp up --resource-group <NOMBRE-RESOURCE-GROUP> --name <NOMBRE-APPSERVICE-CREAR> --plan <NOMBRE-PLAN-CREAR>
+```
+
+
+## Scenario 3 : Deployment en un App Service desde una image de Docker
 
 1. Crear un App Service Plan  
 
