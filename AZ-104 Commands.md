@@ -282,6 +282,10 @@ $cred = New-Object -TypeName System.Management.Automation.PSCredential -Argument
 
 ## Listar Imgenes VM
 
+```bash
+falta comando
+```
+
 ## CrearVM 
 
 ```powershell
@@ -290,8 +294,10 @@ New-AzVM -Name myVm -ResourceGroupName SandBox -Image Win2019DataCenter -Credent
 
 ### Especificar Tamaño VM y Segundo Disco {#especificar-tamaño-vm-y-segundo-disco}
 
+```powershell
 New-AzVM \-Name Vm-RRHh \-ResourceGroupName AZ104-Clase-Cuatro \-Image Win2019DataCenter \-VirtualNetworkName VNet-RRHH \-SubnetName default \-Location eastus \-SecurityGroupName NSG-Default \-DataDiskSizeInGb 64 \-Size Standard\_DS1\_v2  
 ***Esto crea un segundo disco***
+```
 
 ## Reiniciar una VM {#reiniciar-una-vm}
 
@@ -301,13 +307,24 @@ az vm restart \-n myAz104Vm \-g Az104-Clase-Dos
 
 # App Service
 
-Deploy de una app en un creando App Service y Plan Nuevo
+## Deploy de una app en un creando App Service y Plan Nuevo
+   
 ```
 az webapp up --resource-group <NOMBRE-RESOURCE-GROUP> --name <NOMBRE-APPSERVICE-CREAR> --plan <NOMBRE-PLAN-CREAR>
 ```
 
+## Crear una app y hacer deploy en App Service Existente
 
-# Utils {#utils}
+```bash
+dotnet new mvc --name <nombre-app>
+dotnet publish -o ./pub
+cd <nombre-app>
+zip -r pub.zip .
+cd..
+az webapp deployment source config-zip --resource-group <nombre-resource-group> --name <nombre-app-service-existente> --src ./pub/pub.zip
+```
+
+# ⛏️ Utils {#utils}
 
 ## Instalar IIS en una maquina {#instalar-iis-en-una-maquina}
 
