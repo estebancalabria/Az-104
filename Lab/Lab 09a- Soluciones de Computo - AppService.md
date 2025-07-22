@@ -43,7 +43,11 @@ Luego pararnos en la carpeta
 
 ** USar Comando az webapp deploy**
 ```bash
-
+dotnet publish -o ./pub
+cd <nombre-app>
+zip -r pub.zip .
+cd..
+az webapp deployment source config-zip --resource-group <nombre-resource-group> --name <nombre-app-service-existente> --src ./pub/pub.zip
 ```
 
 ## Scenario 2 : Deployment en un App Service Rapida
