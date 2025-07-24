@@ -151,9 +151,9 @@ az aks get-credentials --resource-group <nombre-resource-group>  --name <nombre-
 
 ```bash
 kubectl apply -f ./deployment.yaml
-
+kubectl apply -f ./Service.yaml
 ```
 
-12.  
+12. Probar el deployment
 
 
