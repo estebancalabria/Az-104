@@ -87,9 +87,75 @@ az acr repository list --name  ac4raz104clase07
 8. Conectar aks con acr (No deja desde el portal)
    
 ```bash
-
+az aks update -n <cluster-aks> -g <grupo-de-recursos> --attach-acr <nombre-acr>
 ```
    
-9. 
+9. Crear los manifiestos de Kubernetes
+
+**Service.yaml**
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-minimal
+  labels:
+    app: express-minimal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: express-minimal
+  template:
+    metadata:
+      labels:
+        app: express-minimal
+    spec:
+      containers:
+      - name: express-minimal
+        image: app-minimalista:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+``
+
+**Deployment.yaml**
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-minimal
+  labels:
+    app: express-minimal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: express-minimal
+  template:
+    metadata:
+      labels:
+        app: express-minimal
+    spec:
+      containers:
+      - name: express-minimal
+        image: app-minimalista:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+```
+
+10. 
 
 
