@@ -122,7 +122,7 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "100m"
-``
+```
 
 **Deployment.yaml**
 ```yaml
