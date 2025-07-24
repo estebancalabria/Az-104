@@ -109,7 +109,10 @@ spec:
   type: LoadBalancer
 ```
 
-**Deployment.yaml**
+**Deployment.yaml**    
+Reemplazar
+* **<url-acr>** por la URL de nuestro Azure Container Registry
+* **<nombre-imagen>** por el nombre de la imagen que subimos al Container Registry
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -129,7 +132,7 @@ spec:
     spec:
       containers:
       - name: express-minimal
-        image: app-minimalista:latest
+        image: <url-acr>:<nombre-imagen>:latest
         ports:
         - containerPort: 3000
         resources:
@@ -160,6 +163,7 @@ Listar serviccios de Kubernetes
 ```
 kubectl get service
 ```
+Copiamos la IP publica y la probamos en el navegador   
 
 **Comandos Extras**    
 Para ver los pods corriendo
@@ -172,5 +176,5 @@ Para ver que esta pasando en los pods (especie de logs)
 kubectl describe pods  
 ```
 
-Copiamos la IP publica y la probamos en el navegador
+
 
