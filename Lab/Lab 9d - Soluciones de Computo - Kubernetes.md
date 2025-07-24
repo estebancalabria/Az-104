@@ -67,6 +67,29 @@ CMD ["npm", "start"]
 
 ```bash
 az acr login --name <nombre-acr> --expose-token
+az acr build --registry ac4raz104clase07 --image app-minimalista .
 ```
+
+6. Verificar que la imagen se subio al contenedor
+
+> Verlo en el portal
+   
+o...
+   
+```bash
+az acr repository list --name  ac4raz104clase07
+```
+
+7. Crear el recurso de Kubernetes desde el portal
+
+> Lo hacemos todo desde el portal. Utilizar DS2_v2 para el nodo
+
+8. Conectar aks con acr (No deja desde el portal)
+   
+```bash
+
+```
+   
+9. 
 
 
