@@ -94,34 +94,19 @@ az aks update -n <cluster-aks> -g <grupo-de-recursos> --attach-acr <nombre-acr>
 
 **Service.yaml**
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: express-minimal
+  name: express-minimal-service
   labels:
     app: express-minimal
 spec:
-  replicas: 2
   selector:
-    matchLabels:
-      app: express-minimal
-  template:
-    metadata:
-      labels:
-        app: express-minimal
-    spec:
-      containers:
-      - name: express-minimal
-        image: app-minimalista:latest
-        ports:
-        - containerPort: 3000
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "50m"
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
+    app: express-minimal
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: LoadBalancer
 ```
 
 **Deployment.yaml**
@@ -156,6 +141,19 @@ spec:
             cpu: "100m"
 ```
 
-10. 
+10. Loguearnos en kubernetes
+
+```bash
+az aks get-credentials --resource-group <nombre-resource-group>  --name <nombre-cluster-kubernetes>
+```
+
+11. Hacer el deployment
+
+```bash
+kubectl apply -f ./deployment.yaml
+
+```
+
+12.  
 
 
