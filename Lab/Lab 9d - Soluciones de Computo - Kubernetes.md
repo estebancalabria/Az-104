@@ -111,8 +111,8 @@ spec:
 
 **Deployment.yaml**    
 Reemplazar
-* **<url-acr>** por la URL de nuestro Azure Container Registry
-* **<nombre-imagen>** por el nombre de la imagen que subimos al Container Registry
+* <url-acr> por la URL de nuestro Azure Container Registry
+* <nombre-imagen> por el nombre de la imagen que subimos al Container Registry
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
