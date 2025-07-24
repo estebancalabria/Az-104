@@ -150,10 +150,27 @@ az aks get-credentials --resource-group <nombre-resource-group>  --name <nombre-
 11. Hacer el deployment
 
 ```bash
-kubectl apply -f ./deployment.yaml
+kubectl apply -f ./Deployment.yaml
 kubectl apply -f ./Service.yaml
 ```
 
 12. Probar el deployment
 
+Listar serviccios de Kubernetes
+```
+kubectl get service
+```
+
+**Comandos Extras**    
+Para ver los pods corriendo
+```bash
+kubectl get pods
+```
+
+Para ver que esta pasando en los pods (especie de logs)
+```bash
+kubectl describe pods  
+```
+
+Copiamos la IP publica y la probamos en el navegador
 
