@@ -187,7 +187,7 @@ $vnet | Set-AzVirtualNetwork
 **Az**
 
 ```az
-az network vnet subnet create \--resource-group Rg-Az104-Clase-Diez \--vnet-name VNet-Az104-Marvel \--name Subnet-Capitan-America \--address-prefixes 10.0.1.0/24
+az network vnet subnet create --resource-group Rg-Az104-Clase-Diez --vnet-name VNet-Az104-Marvel --name Subnet-Capitan-America --address-prefixes 10.0.1.0/24
 ```
 
 
