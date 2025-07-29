@@ -6,7 +6,7 @@
 * [Resource Groups]
 * [Active Directory](#active-directory)
 * 🌐Virtual Networks
-* [Network Securty Group](#network-securty-group)
+* 🛡️Network Securty Group
 * [Disco](#disco)
 * [IP Publica](#ip-publica)
 * [Network Security Group](#network-security-group)
@@ -193,9 +193,10 @@ az network vnet subnet create --resource-group Rg-Az104-Clase-Diez --vnet-name V
 
 ---
 
-# Network Securty Group 
+# 🛡️Network Securty Group 
 
-## Crear Un Network Security Group
+
+- ## Crear Un Network Security Group
 
 **Powershell**
 
@@ -207,9 +208,9 @@ New-AzNetworkSecurityGroup -Name Nsg-Default -Location eastus -ResourceGroupName
 
 ```
 az network nsg create --resource-group Rg-Az104-Clase-Diez --name Nsg-Gob
-``
+```
 
-## Agregar Regla a un NSG {#agregar-regla-a-un-nsg}
+- ## Agregar Regla a un NSG {#agregar-regla-a-un-nsg}
 
 ```powershell
 $nsg = Get-AzNetworkSecurityGroup -Name NSG-Default -ResourceGroupName Az104-Clase-Cuatro
@@ -217,6 +218,8 @@ $nsg = Get-AzNetworkSecurityGroup -Name NSG-Default -ResourceGroupName Az104-Cla
 Add-AzNetworkSecurityRuleConfig -Name Allow-Rdp -Description "Permitir RDP" -Priority 100 -Direction inbound -SourceAddressPrefix * -SourcePortRange * -DestinationAddressPrefix 10.0.0.4 -DestinationPortRange 3389 -NetworkSecurityGroup $nsg -Protocol tcp -Access Allow
 
 Set-AzNetworkSecurityGroup -NetworkSecurityGroup $nsg
+```
+  
 ```
 
 # Disco {#disco}
@@ -231,47 +234,33 @@ New-AzDisk \-DiskName Disco-1 \-ResourceGroupName Rg-Az104-Clase-Cinco  \-Disk (
 
 New-AzPublicIpAddress \-Name IP-1 \-Location eastus \-ResourceGroupName Rg-Az104-Clase-Cinco \-AllocationMethod Static \-Sku Standard
 
-# Network Security Group {#network-security-group}
 
-## Crear Un Network Security Group {#crear-un-network-security-group-1}
 
-New-AzNetworkSecurityGroup \-Name Nsg-Az104-Clase-Cinco \-Location eastus \-ResourceGroupName Rg-Az104-Clase-Cinco
 
-# 
+# 💻 Virtual Machines 
 
-# Virtual Machines {#virtual-machines}
-
-## Habilitar Ping en una maquina virtual {#habilitar-ping-en-una-maquina-virtual}
+- ## Habilitar Ping en una maquina virtual {#habilitar-ping-en-una-maquina-virtual}
 
 netsh advfirewall firewall add rule name="Allow ICMPv4" protocol=icmpv4:8,any dir=in action=allow
 
-## Reiniciar Maquina Virtual {#reiniciar-maquina-virtual}
+- ## Reiniciar Maquina Virtual 
 
+```powershell
 Restart-Computer
+```
 
-## Listar imagenes de maquinas virtuales {#listar-imagenes-de-maquinas-virtuales}
+- ## Listar imagenes de maquinas virtuales 
 
+```bash
  az vm image list
+```
+    
+```bash
+az vm image list --offer windows-11 --publisher MicrosoftWindowsDesktop --sku win11pro --location westus --all --output table
 
-## Crear una máquina virtual nueva {#crear-una-máquina-virtual-nueva}
+```
 
-### Default {#default}
-
-New-AzVM \-Name myAz104Vm \-ResourceGroupName Az104-Clase-Dos \-Location eastus \-ImageName Win2016Datacenter
-
-### En una Vnet existente {#en-una-vnet-existente}
-
-New-AzVM \-Name myAz104VMSecundaria \-ResourceGroupName AZ104-Clase-Tres \-Image Win2019DataCenter \-VirtualNetworkName myAz104VNet \-SubnetName uno \-Location eastus
-
-### En un VNet y NSG {#en-un-vnet-y-nsg}
-
-New-AzVM \-Name myAz104VMSecundaria \-ResourceGroupName AZ104-Clase-Tres \-Image Win2019DataCenter \-VirtualNetworkName myAz104VNet \-SubnetName uno \-Location eastus \-SecurityGroupName NSG-Default
-
----
-
-# 💻 Virtual Machines
-
-## Crear Credencial 
+- ## Crear Credencial 
 
 ```powershell
 $pass = ConvertTo-SecureString -String (Read-Host "Ingrese su Pass") -AsPlainText -Force    
@@ -280,19 +269,48 @@ $cred = New-Object -TypeName System.Management.Automation.PSCredential -Argument
 
 ```
 
-## Listar Imgenes VM
 
-```bash
-falta comando
+
+
+- ## Crear una máquina virtual nueva 
+
+### Default {#default}
+
+New-AzVM \-Name myAz104Vm \-ResourceGroupName Az104-Clase-Dos \-Location eastus \-ImageName Win2016Datacenter
+
+- ### En una Vnet existente {#en-una-vnet-existente}
+
+New-AzVM \-Name myAz104VMSecundaria \-ResourceGroupName AZ104-Clase-Tres \-Image Win2019DataCenter \-VirtualNetworkName myAz104VNet \-SubnetName uno \-Location eastus
+
+- ### Crear una VM En un VNet y NSG 
+
+```powershell
+New-AzVM -Name myAz104VMSecundaria -ResourceGroupName AZ104-Clase-Tres -Image Win2019DataCenter -VirtualNetworkName myAz104VNet -SubnetName uno -Location eastus -SecurityGroupName NSG-Default
 ```
 
-## CrearVM 
+- ### Crear una VM En un VNet y NSG con Credencial 
+
+```powershell
+
+$pass = ConvertTo-SecureString -String (Read-Host "Ingrese su Pass") -AsPlainText -Force    
+
+$cred = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList "AzureUser", $pass
+
+az vm image list --offer windows-11 --publisher MicrosoftWindowsDesktop --sku win11pro --location westus --all --output table
+    
+New-AzVM -Credential $cred -Image MicrosoftWindowsDesktop:windows-11:win11-24h2-pro:latest  -Location westus -Name vm-az104 -OpenPorts 3389 -PublicIpAddressName Ip-vm-az104 -ResourceGroupName <nombre-rg> -SecurityGroupName <nombre-nsg> -SubnetName subnet-0 -VirtualNetworkName vnet-az104-0
+
+```
+
+
+
+- ## CrearVM 
 
 ```powershell
 New-AzVM -Name myVm -ResourceGroupName SandBox -Image Win2019DataCenter -Credential $Credential
 ```
 
-### Especificar Tamaño VM y Segundo Disco {#especificar-tamaño-vm-y-segundo-disco}
+- ### Especificar Tamaño VM y Segundo Disco {#especificar-tamaño-vm-y-segundo-disco}
 
 ```powershell
 New-AzVM \-Name Vm-RRHh \-ResourceGroupName AZ104-Clase-Cuatro \-Image Win2019DataCenter \-VirtualNetworkName VNet-RRHH \-SubnetName default \-Location eastus \-SecurityGroupName NSG-Default \-DataDiskSizeInGb 64 \-Size Standard\_DS1\_v2  
