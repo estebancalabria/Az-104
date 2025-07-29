@@ -4,3 +4,7 @@
 * Laboratorios : https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/
 * Github Oficial : https://github.com/MicrosoftLearning/AZ-104-MicrosoftAzureAdministrator.es-es
 * Instalar comanzo AZ localmente : https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest&pivots=msi
+
+## Azure Backup y Site Recovery
+* Azure Backup : https://learn.microsoft.com/es-es/training/modules/protect-virtual-machines-with-azure-backup/
+* Site Recovery : https://learn.microsoft.com/en-us/training/modules/protect-infrastructure-with-site-recovery/
