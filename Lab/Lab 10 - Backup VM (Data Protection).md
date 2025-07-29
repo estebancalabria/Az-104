@@ -23,4 +23,15 @@ New-AzNetworkSecurityGroup -Name <nombre-nsg> -Location westus -ResourceGroupNam
 
 ```
 
-5. 
+5. Crear una Virtual machine
+```powershell
+$pass = ConvertTo-SecureString -String (Read-Host "Ingrese su Pass") -AsPlainText -Force
+    
+$cred = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList "AzureUser", $pass
+    
+az vm image list --offer windows-11 --publisher MicrosoftWindowsDesktop --sku win11pro --location westus --all --output table
+    
+New-AzVM -Credential $cred -Image MicrosoftWindowsDesktop:windows-11:win11-24h2-pro:latest  -Location westus -Name vm-az104 -OpenPorts 3389 -PublicIpAddressName Ip-vm-az104 -ResourceGroupName rg-az104-clase-08 -SecurityGroupName nsg-az104 -SubnetName subnet-0 -VirtualNetworkName vnet-az104-0
+```
+
+6. 
