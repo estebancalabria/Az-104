@@ -304,5 +304,11 @@ az monitor log-analytics workspace create --name log4trainner --resource-group r
 6. Crear una alerta
       * La alerta la hacemos en monitoring (tercer Opcion)
       * La vamos a hacer a nivel subscripcion
-7. 
-8. 
+      * Creamos un Action Group para que nos mande un Email
+      * Crear una alerta por si borran la VM
+
+7. Borrar la VM
+
+8.  Verificar que llego el correo de la Alerta
+
+ 
