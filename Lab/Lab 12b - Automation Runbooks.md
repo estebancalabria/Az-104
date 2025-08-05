@@ -6,6 +6,7 @@ Opciones como IAC (Infraestructura como codigo)
 * Terraform Templates
 * CLI de powershell
 * Con el comando AZ
+* **Automation Runbooks** <<<<<
 
 - ## Pasos:
 
@@ -17,7 +18,7 @@ New-AzResourceGroup -Name "rg-az104-clase-10" -Location 'WestUS'
      
 2. Crear un Automation Account
 
-3. Crear un Runbook
+3. Crear un Runbook, luego darle "Save" y luego "Publish"
 
 ```powershell
 param (
@@ -30,12 +31,18 @@ Connect-AzAccount -Identity
 Stop-AzVM -ResourceGroupName $ResourceGroupName -Name $VMName -Force
 ```
 
+> Para publicarlo por CLI si no anda el portal
+> Publish-AzAutomationRunbook -AutomationAccountName "aut-az104-clase-10" -Name "Detener-VM" -ResourceGroupName "rg-az104-clase-10"
+
 4. Crear un VM
 
 ```powershell
 New-AzVm -ResourceGroupName "rg-az104-clase-10" -Name "vm-clase-10" -Location 'westUS' -VirtualNetworkName "myVnet" -SubnetName "mySubnet" -SecurityGroupName   "myNetworkSecurityGroup" -PublicIpAddressName "myPublicIpAddress" -PublicIpSku Standard -OpenPorts 80,3389 -Size Standard_D2s_v3
 ```
 
-5. 
+5. Darle permiso a la cuenta de automatizacion para hacer cambios sobre el resource group (o la subscripcion)
+          * Esto se hace en la parte de "Access Control (IAM)" del resource group o la subscripcion
+
+6. Verificar que la VM este en status Running y ejecutar el RunBook
 
 - 
