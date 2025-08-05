@@ -45,4 +45,13 @@ New-AzVm -ResourceGroupName "rg-az104-clase-10" -Name "vm-clase-10" -Location 'w
 
 6. Verificar que la VM este en status Running y ejecutar el RunBook
 
-- 
+7. Agrega un Schedulle dentro de la Autoation Account para que ejecute la automatizacion en una hora dada
+
+Por el Cli
+```powershell
+az automation schedule create --automation-account-name aut-az104-clase-10 --name Detener-VM --resource-group rg-az104-clase-10 --schedule-name Detener-VM-CLi --start-time "2025-08-05T15:10:00Z" --frequency day --interval 2
+
+.. fala el comando para hacer link...
+
+
+```
