@@ -80,3 +80,32 @@
 # Microsoft Entra
 
 ## Identity
+
+* Los usuarios residen en un tennant
+  
+* Tipos de Identidad en Microsoft
+  * Usuarios Finales (USers)
+      * Usuarios del Tennant
+      * Usuarios Invitados
+  * Applicaciones (app Registratios)
+      * Me permite que las aplicaciones accedan a recursos de Azure indetificandose como ellas mismas
+      * Me permiten implentar el SSO (single sign on), loguearse en una app con mi cuenta del tennat
+  * Enterpise Applications
+      * Son aplicacion conocidas que microsoft permite registrar de una forma mas facil
+  * Managed Identity
+      * Una identidad asociada a un recurso de azure (VM, BaseDeDatos, Storace Account)
+      * Tipos
+        * System Assigned Manged Identity 
+        * User Assigned Managed Identity
+
+* Grupos de Usuarios
+
+### Laboratorio
+
+* Cree un usuario en mi tennant
+
+* Abri una ventana de incognito
+
+* Me loguee con ese usuario
+  * Me obliga a cambiar la clave
+  * Me obliga el MFA (Multi Factor Autenticator) para poder ingresar
