@@ -249,9 +249,69 @@ Completame este json "{
 }
 ```
 
+* Si asigno esa policy y trato de crear el Resource Group me tira el error
+
+```
+Resource 'asdfg' was disallowed by policy. (Code: RequestDisallowedByPolicy, Policy(s): ResourceGroup starts with rg- Policy link (Reason: Los Resource Groups tienen que empezar con el nombre rg))
+```
+
 ---
+# BREAK
+# Volvemos a iniciar el Xtreme Labs
+---
+
 # Gobernanzada en Entra
 
-# Deployment con ARM Template
+* Vamos a Entra a Identity Governance
+* Toas las opciones aqui requieren licencia P2
+* No es neceseario saberlo hacer para el az104, pero puede aparecer en alguna pregunta mencionado como parte del contexto
+
+## Lifecycle Workflows
+
+* Automatizar acciones sobre un usuario (un identity en general) cuando ocurren ciertos eventos:
+   * Cambio de Depamento
+   * Es dado de baja
+   * Cambia el puesto
+* Tareas como:
+   * Madnar un bien de bienvenida
+   * Asignar licencia
+   * Quitar o agregar a grupos de usuario
+   * Crear usuario/darle acceso a algun sistema
+   * 
+
+## Entitlement Management
+
+* Se crea un Acces Packagege (conjunto de permisos)
+* Los usuarios pueden solicitar acceso a este access package y tiene un flujo de aprobacion
+* El acceo se otorga por un periodo de tiempo renvable
+
+### PIM (Privilidged Identity Management)
+
+* Permite asignar permisos RBAC bajo demanda en forma selectiva a un usuario (generalmente extrerno a la organizacion)
+* Si un usuario externo viene a trabajar el miercoles en mi empresa
+* Invito al usuario
+* Le asigno los permisos que puede solicitar
+* El usuario solicita esos permisos
+* Yo lo apruebo
+* Y tiene asignado esos permisos RBAC por un tiempo X para realizar su tarea
+
+### Access Review
+
+* Permite reisar los roles asignados y quitarlos si no van mas
+* Se puede programar para realizarse en forma recurrente
+
+## Conditional Access
+
+* Esta aparte de ID governance pero esta relacionado
+* Le programas policas de acceso condicional:
+      * Si el usuario se conecta desde otro pais -> Mandarle si o si un MFA por SMS
+      * Si el usuario se conecta desde rusia -> Denegarle el acceso
+* Aca es donde se configura lo del MFA
+  
+
+----
+
+# Proxima clase...
+#       ...Deployment con ARM Template
 
 ---
