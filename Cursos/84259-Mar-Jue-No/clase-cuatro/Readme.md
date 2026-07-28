@@ -47,6 +47,9 @@ New-AzResourceLock -LockName "PreventDeleteLock" -LockLevel CanNotDelete -Resour
 
 ## ARM Template
 
+* Caracteristica
+ * Los arm templats son idempotentes : significa que si hay una infraestructura a medio crear, el template va a tratar de completarla 
+
 * Me baja este json
 
 ```
@@ -159,6 +162,75 @@ New-AzResourceLock -LockName "PreventDeleteLock" -LockLevel CanNotDelete -Resour
     }
 }
 ```
- 
+
+* Para desplegarlo buscar en el buscador de recursos "Deploy custom Template"
+
+<img width="289" height="115" alt="image" src="https://github.com/user-attachments/assets/783d4476-ff72-4fdd-96ed-4e1e62cd6a48" />
+
+* Elegir el boton "Build your own template in the editor"
+
+* Darle Save
+
+* Todo lo que son Parameters lo tendria que completar
+
+* Uff... que embole completar todos los parmetros.. mejor vamos a hacer algo... le pido a la IA
+
+```
+Tengo este template.json y parameters.json <Adjuntar archivos) No quiero que me pregunte ningun parametro, que esten fijos en el template y que ademas me cree 5 discos que se llamen az102-clase-03-disk-<Numero> donde numero va variando entre 1 y 5
+```
+
+* Nuevo template
+
+```
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "variables": {
+    "location": "westus",
+    "sku": "Premium_LRS",
+    "diskSizeGb": 1024,
+    "diskEncryptionSetType": "EncryptionAtRestWithPlatformKey",
+    "createOption": "Empty",
+    "dataAccessAuthMode": "None",
+    "networkAccessPolicy": "AllowAll",
+    "publicNetworkAccess": "Enabled"
+  },
+  "resources": [
+    {
+      "copy": {
+        "name": "diskCopy",
+        "count": 5
+      },
+      "type": "Microsoft.Compute/disks",
+      "apiVersion": "2025-01-02",
+      "name": "[format('az102-clase-03-disk-{0}', add(copyIndex(), 1))]",
+      "location": "[variables('location')]",
+      "sku": {
+        "name": "[variables('sku')]"
+      },
+      "properties": {
+        "creationData": {
+          "createOption": "[variables('createOption')]"
+        },
+        "diskSizeGB": "[variables('diskSizeGb')]",
+        "encryption": {
+          "type": "[variables('diskEncryptionSetType')]"
+        },
+        "dataAccessAuthMode": "[variables('dataAccessAuthMode')]",
+        "networkAccessPolicy": "[variables('networkAccessPolicy')]",
+        "publicNetworkAccess": "[variables('publicNetworkAccess')]"
+      },
+      "tags": {}
+    }
+  ]
+}
+```
+
+> [!NOTE]
+> Observar que ahora no hay parameters (que se los pregunta al usuario) son todos "variables"
+
+* Creamos un archivo template.json con nuestra nueva version
+ * Podemos pisar el anterior
 
  # Virtual Networks
