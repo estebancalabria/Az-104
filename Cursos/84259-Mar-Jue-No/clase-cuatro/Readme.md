@@ -20,6 +20,11 @@
 
  ---
 
+ # Requisito
+
+ * Instalar el VSCode el que no lo tiene
+   * https://code.visualstudio.com/
+
  # Administracion de Azure
 
  * Los locks sobre grupos de recursos son una forma sencilla de evitar que otra persona nos borre un rg por accidente
@@ -33,6 +38,8 @@
 ```
 New-AzResourceLock -LockName "PreventDeleteLock" -LockLevel CanNotDelete -ResourceGroupName "rg-az104-clase-04"
 ```
+
+* Sacar el resource group lock
 
  # IAC (Infraestructura como codigo)
 
@@ -176,12 +183,11 @@ New-AzResourceLock -LockName "PreventDeleteLock" -LockLevel CanNotDelete -Resour
 * Uff... que embole completar todos los parmetros.. mejor vamos a hacer algo... le pido a la IA
 
 ```
-Tengo este template.json y parameters.json <Adjuntar archivos) No quiero que me pregunte ningun parametro, que esten fijos en el template y que ademas me cree 5 discos que se llamen az102-clase-03-disk-<Numero> donde numero va variando entre 1 y 5
+Tengo este template.json y parameters.json <Adjuntar archivos) No quiero que me pregunte ningun parametro, que esten fijos en el template y que ademas me cree 5 discos que se llamen az102-clase-03-disk-<Numero> donde numero va variando entre 1 y 5. Devolverme el json nuevo sin acotar nada mas
 ```
 
 * Nuevo template
 
-```
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -232,5 +238,40 @@ Tengo este template.json y parameters.json <Adjuntar archivos) No quiero que me 
 
 * Creamos un archivo template.json con nuestra nueva version
  * Podemos pisar el anterior
+
+* Al hacer deploy de este nuevo template ya no me pregunta todos los parametros
+
+* Ahora tengo de una 5 discos creados
+
+### Idempotencia y deployment por Consola
+
+* Borrar 2 de los 5 discos, el 2 y el 4
+
+* Podemos borrarlo por el cli
+```
+az disk delete -g rg-az104-clase-04 -n az102-clase-03-disk-4 --yes    
+```
+
+* Subo el template.json al cli
+
+<img width="198" height="107" alt="image" src="https://github.com/user-attachments/assets/168caa20-3ef5-492c-b1b5-ac104a27cd0a" />
+
+
+* Ahora a ChatGPT
+
+```
+como hago deploy de un json sin parametros con el comando az en el rg rg-az104-clase-04 en westus. Devolveme el parametro sin acotar nada mas
+```
+
+* Me tira ( y lo tiro en el cli)
+
+```
+az deployment group create --resource-group rg-az104-clase-04 --template-file template.json
+```
+
+> [!NOTE]
+> Veo que creo los discos que faltaban pero los que ya estaban los dejo como estaba. Esto es la IDEMPOTENCIA
+
+---
 
  # Virtual Networks
