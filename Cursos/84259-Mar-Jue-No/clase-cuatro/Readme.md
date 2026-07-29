@@ -325,6 +325,33 @@ resource disks 'Microsoft.Compute/disks@2025-01-02' = [for i in range(1, 6): {
 
 * Vamos a generar un archivo con extension .bicep con ese contenido
 
+> [!NOTE]
+> El comando para desplegar un arm template o un bicep es lo mismo. Es indistinto para el cli si es uno u otro
+
+* Lo subimos al cli
+
+* (Asegurarse no tener discos creados)
+
+* A ChatGPT
+
+```
+Ahora dame el comando para hacer deploy en el rg rg-az104-clase-04 por powershell pero el archivo es un bicep que se llama template.bicep
+```
+
+* Me tira el comando (que lo ejecuto en el cli de powershell)
+
+```
+New-AzResourceGroupDeployment -ResourceGroupName rg-az104-clase-04 -TemplateFile .\template.bicep
+```
+
+> [!NOTE]
+> Es indistinto si es un arm template o un bicep template. Se da cuenta solo.
+
+
 ---
 
- # Virtual Networks
+ # Proxima Clase
+
+* Mencionar Terraform : Es como bicep pero multi cloud
+* Virtual Network
+   
