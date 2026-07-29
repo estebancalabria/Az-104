@@ -1,0 +1,44 @@
+
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "variables": {
+    "location": "westus",
+    "sku": "Premium_LRS",
+    "diskSizeGb": 1024,
+    "diskEncryptionSetType": "EncryptionAtRestWithPlatformKey",
+    "createOption": "Empty",
+    "dataAccessAuthMode": "None",
+    "networkAccessPolicy": "AllowAll",
+    "publicNetworkAccess": "Enabled"
+  },
+  "resources": [
+    {
+      "copy": {
+        "name": "diskCopy",
+        "count": 5
+      },
+      "type": "Microsoft.Compute/disks",
+      "apiVersion": "2025-01-02",
+      "name": "[format('az102-clase-03-disk-{0}', add(copyIndex(), 1))]",
+      "location": "[variables('location')]",
+      "sku": {
+        "name": "[variables('sku')]"
+      },
+      "properties": {
+        "creationData": {
+          "createOption": "[variables('createOption')]"
+        },
+        "diskSizeGB": "[variables('diskSizeGb')]",
+        "encryption": {
+          "type": "[variables('diskEncryptionSetType')]"
+        },
+        "dataAccessAuthMode": "[variables('dataAccessAuthMode')]",
+        "networkAccessPolicy": "[variables('networkAccessPolicy')]",
+        "publicNetworkAccess": "[variables('publicNetworkAccess')]"
+      },
+      "tags": {}
+    }
+  ]
+}
+
