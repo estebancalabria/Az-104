@@ -272,6 +272,59 @@ az deployment group create --resource-group rg-az104-clase-04 --template-file te
 > [!NOTE]
 > Veo que creo los discos que faltaban pero los que ya estaban los dejo como estaba. Esto es la IDEMPOTENCIA
 
+## Bicep Template
+
+* Es un lenguaje alternativo al ARM template mas sencillo.
+ * Mas legible
+ * Facil de mantener
+
+* El VSCode tiene una extension que ayuda a excribir bicep
+ * https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep
+
+* Vamos a pedirle a la IA que me convierta mi arm template en un bicep template
+
+```
+Convertime esto "..." en un bicep template. Devovler el template sin acotar nada mas
+```
+
+* Me devuelve
+
+```
+targetScope = 'resourceGroup'
+
+var location = 'westus'
+var sku = 'Premium_LRS'
+var diskSizeGb = 1024
+var diskEncryptionSetType = 'EncryptionAtRestWithPlatformKey'
+var createOption = 'Empty'
+var dataAccessAuthMode = 'None'
+var networkAccessPolicy = 'AllowAll'
+var publicNetworkAccess = 'Enabled'
+
+resource disks 'Microsoft.Compute/disks@2025-01-02' = [for i in range(1, 6): {
+  name: 'az102-clase-03-disk-${i}'
+  location: location
+  sku: {
+    name: sku
+  }
+  properties: {
+    creationData: {
+      createOption: createOption
+    }
+    diskSizeGB: diskSizeGb
+    encryption: {
+      type: diskEncryptionSetType
+    }
+    dataAccessAuthMode: dataAccessAuthMode
+    networkAccessPolicy: networkAccessPolicy
+    publicNetworkAccess: publicNetworkAccess
+  }
+  tags: {}
+}]
+```
+
+* Vamos a generar un archivo con extension .bicep con ese contenido
+
 ---
 
  # Virtual Networks
