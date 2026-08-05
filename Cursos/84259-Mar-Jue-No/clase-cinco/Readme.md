@@ -80,6 +80,11 @@ New-AzResourceGroup -Name rg-az104-clase-04 -Location westus
 * En el buscador de recursos poner la abreviacion nsg y te lleva al recurso "Network Security Group"
 * Creamoe el NSG
   * Name : nsg-az104-clase-04
+
+* Para definir las reglas de trafico un NSG se puede asociar con:
+  * Una subnet
+  * Una NIC (una placa de red)
+  * Un ASG (Application Security Group)
  
 # Network Watcher
 
@@ -193,3 +198,34 @@ New-AzResourceGroup -Name rg-az104-clase-04 -Location westus
 ```
 
 ---
+
+# Crear una VM
+
+* Vamos a crear una VM pero en estas subnet
+ * Busco en recursos con la abreviacion vm
+  * Name : vm-az104-1
+  * Prestar atencion a la solapa de networking
+    * Que la VM quede vinculada a una vnet y subnet de las que habiamos creado antes
+    * Que la VM quede asociada al NSG que creamos anteriormente (sino ponemos nada crea uno nuevo solo para la VM)
+
+<img width="531" height="294" alt="image" src="https://github.com/user-attachments/assets/715551cc-64cc-4767-808e-42507d8a285e" />
+
+* Luego que la VM esta creada ir a la VM y luego a netwok Settings
+  * Navegar de la VM -> NIC
+  * Navegar de la VM -> Public IP
+  * Navegar de la VM -> NSG
+* IR al NSG y verificar que esta asociado con la NIC
+
+* Voy a tratar de conectarme con la PC por RDP
+  * No me deja
+  * Tengo que habilitar el 3389 en el NSG
+ 
+* Habilitar el RDP en el NSG
+
+<img width="377" height="357" alt="image" src="https://github.com/user-attachments/assets/454d4b18-ad15-468b-b2a8-a3e08e378253" />
+
+* Voy a tratar de conectarme de nuevo
+  * Ahor si puedo
+
+> [!NOTE]
+> Cuando cree el NSG no tenia habilitado el puerto 3389. Cuando se lo habilite. Ahi pude conectarme a la VM
