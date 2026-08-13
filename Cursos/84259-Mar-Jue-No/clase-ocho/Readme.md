@@ -99,6 +99,10 @@
   * Verifico la version guardad como instantanea en la parte de snapshots
 
 ---
+BREAK
+Matar el XTREMELabs y volverlo acrear
+Nos vemos en 15!
+---
 
 # Trafico de Redes
 
