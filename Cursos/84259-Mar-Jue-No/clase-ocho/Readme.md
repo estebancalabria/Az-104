@@ -34,7 +34,7 @@
     * Access Tiers
       * Hot, Cool, Cold, Archive
 
-# Setup
+# Setup (Para toda la clase)
 
 * Crear el RG
 
@@ -106,3 +106,86 @@ Nos vemos en 15!
 
 # Trafico de Redes
 
+## Setup de la primera VM
+
+* Crear una VM
+  * Asi como viene, que cree la VNet tambien
+  * Nombre : vm-spider-man
+
+* Conectarse al VM por RDP
+  * Abrir Powershell en el RDP de la VM en modo administrador
+  * Instalar IIS
+
+```powershell
+Install-WindowsFeature -Name Web-Server -IncludeManagementTools
+```
+
+* Una vez instalado si accedo a veo el portal del IIS :
+
+```
+http://<IP-VM>/
+```
+
+* En la VM modificar el archivo C:\inetpub\wwwroot\iistart.html
+
+```
+Soy Spider-Man
+```
+
+* Verifico que se muestra eso desde mi pc en el navegador
+
+* Habilitar el puerto 80 y 443 en el NSG
+
+<img width="1516" height="448" alt="image" src="https://github.com/user-attachments/assets/b1d4136b-6a1b-48c3-bbfc-9a0bba5fc489" />
+
+## Setup de la segunda VM
+
+* Crear siguiendo los mismos pasos exactos otra VM
+ * Name : vm-iron-man
+ * Se puede habilitar directamente el http y https en la creacion
+ * Ponerla en la misma vnet y subnet que la otra vm anterior << IMPORTANTE
+
+* Tambien
+ * Conectamos con RDP
+ * Instalamos el IIS
+ * Modificamos el archivo Iistart
+    * Debe decir "Soy Iron Man"
+ * Chequeamos el acceoso desde el navegador
+
+## Load Balancer
+
+* Crear un balanceador de carga delante de las VM
+  * Name : lb-az104
+  * SKU : Standard
+  * Type : Public
+  * Tier : Regional
+    
+* Fronted-Configuration
+  * Crear IP Nueva pip-lb-az104
+
+<img width="771" height="539" alt="image" src="https://github.com/user-attachments/assets/82cd7c7a-91a2-4141-9eaa-baf1199cdc51" />
+
+* Backend Pool
+ * Crear backend Pool
+ * Asociarlo con la vnet de las VM
+ * Agregarle las dos VM
+
+* Review And Create
+
+* Revisar el recurso
+
+* Settings -> Load Balancing Rules
+ * Crear regla "+Add"
+   * Elegir el FrontedIP
+   * Elebir el Backend Pool
+   * Va del puerto 80 al puerto 80
+   * Le creamos un heath probe para que chequee que las maquinas esten vivas
+
+   <img width="959" height="686" alt="image" src="https://github.com/user-attachments/assets/7dc055d1-ec84-42ba-a555-dd0067fe2de3" />
+
+* Acceder a la ip del load balancer
+
+* Primero va a decir "Soy Iron Man" pero si le doy f5 como un condenado va a cambiar a "Soy Spider-MAn"
+
+> [!NOTE]
+> Una vez que tengo configurado el load balancer, no es necesesario tener habilitados los puertos 80 y 443 del nsg, los pue doar de baja para que no se tenga acceso a las vm desde internet
