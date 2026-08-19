@@ -102,3 +102,34 @@ az acr import --name  <nombre-unico> --source docker.io/library/nginx:latest  --
 # BREAK
 # NO OLVIDAR REINICIAR EL LAB
 ---
+
+# AppService
+
+* Crear AppService
+  * Name: app4tranner (va a crear url unica)
+  * Stack : Php 8.2
+  * OS : Linux
+  * Plan : Premium V3
+* Review and Create
+
+* En el overvire
+  * Mirar : Default Domain
+  * Abrirlo en una ventana del navegador para ver el sitio desplegado por defecto
+
+* Un Deployment slot te permite tener varias versiones del mismo sitio (por ejemplo, una para testing y otra para produccion)
+
+* Settings -> Configuration
+ * SCM Basic Auth Publishing Credentials : Enabled
+   * Apply
+
+> [!NOTE]
+> Escenario : Un programador le pide al admistrador de azure que desea desplegar (deploy) su sitio web y te pasa la url de un repo GIT
+
+* Ir a deployment Center
+  * Manual Deployment
+    * Source : External Git
+      * Git Repo : https://github.com/Azure-Samples/php-docs-hello-world
+      * Branch : master
+
+* Refresco el sitio
+  * Ahora se ve el "Hello World"
