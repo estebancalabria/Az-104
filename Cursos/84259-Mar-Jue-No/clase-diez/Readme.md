@@ -140,6 +140,50 @@ DESPUES DEL BREAK VEMOS QUE GUARDA EN EL LOG Y RECREAMOS EL LABORATORIO
 ESTA OPERACION PUEDE TARDAR
 ---
 
+#### Mirar las nuevas tablas creadas
+
+* Mirar el Log Analitics Workspace si se agregaron tablas
+  * VMComputer
+  * VMConnection
+  * VMBoundPort
+  * VMProcess
+  * PerfInsightsFindings
+ 
+* Consultemos algunas tablas con KQL
+  * SysLogs << Logs de Linux
+
+> [!NOTE]
+> Con el tiempo estas tablas se llenan
+
+
+#### Mirar el agente instalado en las VM
+
+* IR a la VM
+ * Settings -> "Extenssions + Applications"
+    * Tiene Instaldo el AMA (AzureMonitorWindowsAgent)
+      * Copia los dato de la vm periodicamente al log
+      * https://learn.microsoft.com/es-es/azure/azure-monitor/agents/azure-monitor-agent-overview
+     
+* Camino
+  * (VM)  -> (Logs / EventViewer / Perfmon)  -> (AMA)  ->  (DCR)   -> (Log Analytics Worsppace)
+ 
+### Mirar el DCR
+
+* Vamos a ver que datos estamos copiando
+* Me fije y actualmente esta guardando solamente los logs de performance
+
+<img width="1259" height="299" alt="image" src="https://github.com/user-attachments/assets/9d93906f-8916-4127-826e-413c3313d736" />
+
+* Agregar que guarde tambien los logs de windwos
+
+<img width="1212" height="307" alt="image" src="https://github.com/user-attachments/assets/e4fb45ba-16dd-4af6-a3e6-cc95ff2ecf2a" />
 
 
 
+---
+
+# Tips
+
+* Dentro de las VM tenes la opcion
+  * Operations -> Run Command
+    * Puedo por ejemplo ejecutar un script de powershell sin tener que conectarme a la VM
