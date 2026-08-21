@@ -29,6 +29,15 @@
 > [!NOTE]
 > La aparicion de los registros en los logs no es instanea, lleva tiempo (a veces 10 minutos)
 
+* Que monitorea el Administrador de Azure:
+  * Lo que pasa en Azure
+      * (Activity Log) Los recursos
+      * Lo que pasa en el Entra
+  * Lo que pasa en las VM
+  * Lo que pasa en las aplicaciones
+     * App Service
+     * Containers
+
 * En el Entra
   * Sign-In Logs
     * Para ver quien se logue en Azure
@@ -46,8 +55,15 @@
           * Una base de datos de logs donde guardamos todo
           * Varias bases de datos divididas segun algun criterio
       * A veces se crea uno por defecto por region
-  * Diagnostic settings
-      * Define reglas que es lo que se exporta del Activity Log al Workspace
+  * Reglas
+    * Diagnostic settings
+        * Lo que es independiente de los recursos creados
+        * Define reglas que es lo que se exporta del Activity Log al Workspace
+    * Data Collection Rules
+        * Los recursos creados
+        * Relglas entre recursos de azure y log analytics worskpace
+  * Monitor
+      * Una opcion de azure que es como un panel general de monitoreo
 
 
 ## Laboratorio
@@ -84,6 +100,8 @@
 > En algun momento va a aparecer la tabla Azure Activity
 > Podeos crear otro recurso mientras para probar
 
+---
+
 ### Guardar Logs de Azure
 
 * Vamos a alimentar el Activity Log y que copie cosas al Workspace
@@ -119,6 +137,8 @@ AzureActivity
 | summarize Cantidad = count() by ActivityStatusValue
 | render piechart
 ```
+
+---
 
 ### Guardar Logs de las VM
 
@@ -167,7 +187,7 @@ ESTA OPERACION PUEDE TARDAR
 * Camino
   * (VM)  -> (Logs / EventViewer / Perfmon)  -> (AMA)  ->  (DCR)   -> (Log Analytics Worsppace)
  
-### Mirar el DCR
+#### Mirar el DCR
 
 * Vamos a ver que datos estamos copiando
 * Me fije y actualmente esta guardando solamente los logs de performance
@@ -178,7 +198,15 @@ ESTA OPERACION PUEDE TARDAR
 
 <img width="1212" height="307" alt="image" src="https://github.com/user-attachments/assets/e4fb45ba-16dd-4af6-a3e6-cc95ff2ecf2a" />
 
+---
 
+## Guardar logs del Entra
+
+* Ir al Entra
+  * Ir a Sign-in-logs (o a Audit-Logs)
+    * Export Data Settigs
+      * Y al igual que hicimos con el Activity Log podemos copiar estos logs al Los Analytics Workspace con un Diagnostic Settings
+  * Lo mismo con los Audit Logs
 
 ---
 
@@ -187,3 +215,9 @@ ESTA OPERACION PUEDE TARDAR
 * Dentro de las VM tenes la opcion
   * Operations -> Run Command
     * Puedo por ejemplo ejecutar un script de powershell sin tener que conectarme a la VM
+
+---
+
+# Proxima Clase
+
+## Monitoring de Aplicaciones
