@@ -59,7 +59,7 @@
   * Runtime Stack : Net9
   * En la solapa monitoring la asociamos con el Application Insights
 
-## Creacion de una APP
+## Creacion de una APP (Esto hacerlo en la terminal de Azure)
 
 * Con el dotnet instalado vamos a crear una app
 
@@ -79,3 +79,69 @@ cd WebDemo
 ```
 dotnet run
 ```
+
+* Compilamos la APP
+
+```
+dotnet publish -c Release -o ./publish
+```
+
+* Comprimimos el compilado en un archivo zip
+
+```
+cd publish
+zip -r ../publish.zip .
+cd ..
+```
+
+* Deploy de la APP
+
+```
+az webapp deploy --name app4demotrainner --resource-group rg-az104-clase-11  --src-path publish.zip
+```
+
+---
+# BREAK 10 Minutos hasta y 35
+---
+
+* Vamos a mirar el recurso de ApplicationInsights
+
+
+* Se van crear tablas en e log
+  * AppRequests
+
+* Tarda entre 10 y 15 minutos en hacer la ingesta
+  
+---
+# Reiniciamos el laboratorio
+---
+
+ # Alerta
+
+## Setup
+
+* Crear el RG
+  * rg-az104-clase-11
+ 
+* Crear un Stroage Account
+   * cs4trainnerdemo
+
+ * Ir a la seccion Alertas del Storage Account
+   * Crear una alerta
+     * Elegir Select Signal
+       * Activity Log  -> Delete Storage Account
+     * Crear un action Group
+
+* Borrar el Storage Account
+  * Luego umos minitos (5/10) me manda un mail
+ 
+* Las alertas creadas Las puedo consultar en
+  * Monitor -> Alerts -> Alert Rules
+ 
+* Deberia llegar un mail asi :
+
+<img width="429" height="405" alt="image" src="https://github.com/user-attachments/assets/630c905b-12e2-4e2e-8b05-c8bd756f72f2" />
+
+# PRoxima Clase
+
+* Vemos el mail que llega por la alerta!
