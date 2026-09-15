@@ -7,8 +7,18 @@
    * Administracion de Indentidades
    * Administracion de Permisos
      * Roles del Entra (Ej: Global Administrator)
+     * Roles de Azure / Roles RBAC (Ej: Owner, Contributor, Reader)
+* Gobernanza / Gobierno
+  * Policies
+    * Que esta permitido y que no en Azure
 * Grupos de Recursos
-   * 
+    * Crear Recursos con el Portal
+    * IAC
+      * Usando templares ARM (Azure Resource Manager Templates)
+      * Usando Templates Bicep
+      * Usando template Terraform (Multi Cloud)
+    * Azure CLI
+  
 
 # Setup de XtremeLabs
 
@@ -50,3 +60,11 @@
 * Laboratorios
   * https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/
   * https://github.com/MicrosoftLearning/AZ-104-MicrosoftAzureAdministrator
+* Youtube (Azure Datacenter Tour)
+  * https://www.youtube.com/watch?v=80aK2_iwMOs&t=21s
+* CAF (Cloud Adoption Framework)
+  * https://azure.microsoft.com/es-es/solutions/azure-essentials/cloud-adoption-framework
+
+# Organizacion Azure
+
+<img width="265" height="381" alt="image" src="https://github.com/user-attachments/assets/f35bfd76-ddbd-45d0-9a34-522f6047a96b" />
