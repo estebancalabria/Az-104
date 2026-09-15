@@ -2,6 +2,14 @@
 
 # Roadmap
 
+* Microsoft Entra
+   * Tennant / Dominio
+   * Administracion de Indentidades
+   * Administracion de Permisos
+     * Roles del Entra (Ej: Global Administrator)
+* Grupos de Recursos
+   * 
+
 # Setup de XtremeLabs
 
 * Ir a
@@ -13,7 +21,18 @@
 
 * Loguearse en el portal de Azure con ese usuario y esa clave
 
+* Ir a la ruedita (settings) en la barra superior -> Language + Region -> English 
+
+* Ir "Resource Groups"
+  * Crear un resource Group
+    * rg-az104-clase-XX
+
 # Sobre Mi...
+
+* MCT Esteban Calabria
+* Redes
+  * https://www.linkedin.com/in/esteban-calabria-7a44401a/
+  * https://www.instagram.com/mct.esteban.calabria/
 
 # Links
 
@@ -21,6 +40,8 @@
    * https://labs.xtremelabs.io/
 * Portal de Azure
    * https://portal.azure.com/#home
+* Portal del Entra
+  * https://entra.microsoft.com/
 * Github del Profe
    * https://github.com/estebancalabria/Az-104/
 * Microsoft Learn
