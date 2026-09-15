@@ -11,14 +11,40 @@
 * Gobernanza / Gobierno
   * Policies
     * Que esta permitido y que no en Azure
-* Grupos de Recursos
+* Grupos de Recursos (rg)
     * Crear Recursos con el Portal
     * IAC
       * Usando templares ARM (Azure Resource Manager Templates)
       * Usando Templates Bicep
       * Usando template Terraform (Multi Cloud)
     * Azure CLI
-  
+* Virtual Network (vnet)
+  * Manejo de Redes en Azure
+  * Conectar redes entre si
+  * Conectar redes azure <-> redes on premise
+  * VPN
+  * Seguridad y redes (quienes se peuden conectar con quien)
+      * Se conecta con el Az-500 (El nuevo Sc-500)
+  * Trobleshooting problemas de conexion
+* Storage
+  * Azure Storage Account
+  * Permisos de Acceso
+  * Ciclos de Vida
+  * Access Tiers / Administracion de costos 
+* Computo
+  * Donde deplegamos nuestras apps / servicios
+  * Virtual Machine (vm)
+    * Seguridad
+    * Como acceder (RDP / Bastion / VPN)
+  * App Services
+    * Escalado de Aplicaciones
+  * Containers
+    * (https://www.docker.com/)
+    * AppService
+    * Container Instances
+    * Container Apps (escalabilidad)
+    * Kubernetes
+
 
 # Setup de XtremeLabs
 
