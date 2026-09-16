@@ -44,7 +44,26 @@
     * Container Instances
     * Container Apps (escalabilidad)
     * Kubernetes
-
+    * Registros de Contenedores
+      * Publicos : https://hub.docker.com/
+      * Propios : Azure Container Registro (ACR)
+* Backups
+  * Azure Backup
+* Monitoreo / Monitoring
+  * Logs Individuales de Cada Recurso
+      * Activity Log
+  * Logs del Entra
+  * Base de Datos de Logs
+      * Logs Analytics Worspaces (Bases de datos de logs)
+  * Logs Propios de las Aplicaciones
+      * Application Insights
+  * Monitor de Azure
+  * Auditoria
+  * Alerta
+  * Respuestas Automaticas y Automatizaciones
+* Defender
+  * Defedender for Cloud
+  * Defender for Indentity
 
 # Setup de XtremeLabs
 
