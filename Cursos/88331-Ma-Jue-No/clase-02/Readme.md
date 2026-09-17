@@ -67,7 +67,7 @@ az group create --name rg-az104-clase-02 --location westus
  
 * Ahora en la parte de la parte de resoruce Groups hay dos, el que cree y el que hizo mi companiero
 
-<img width="320" height="270" alt="image" src="https://github.com/user-attachments/assets/133fecf3-e705-49d7-a52b-1487a83cccf0" />
+<img width="1536" height="422" alt="image" src="https://github.com/user-attachments/assets/d6265185-8878-4630-baf9-6aec007391f0" />
 
 * En el activity log tiene que aparecer una entrada "Create rol Assignent"
 
