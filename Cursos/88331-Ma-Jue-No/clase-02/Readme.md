@@ -26,7 +26,28 @@
 * ...tal vez algo de policies
 * Creacion de VMs
 
-# Manejo de Permisos
+# Microsoft Entra
+
+* Grupos
+* Identidades (Identity)
+  * Usuarios
+     * Usuarios de nuestro tennant
+     * Usuarios Invitados
+  * Service Principals (no humanos)
+     * App Registrations
+        * Aca registro las aplicaciones que se programan en mi organizacion y quiero que autentiquen con los usuarios de mi tennant
+        * OAuth / SSO
+  
+  <img width="209" height="220" alt="image" src="https://github.com/user-attachments/assets/513e10c4-b662-4a06-b8f9-b9b9f11a5e32" />
+
+     * Enterpise Application
+        * Aplicaciones conocidas de terceros que puedo instalar en mi organizacion y quiero que autentiquen con los usuarios de mi tennant
+  * Managed Identities
+      * Recusos de Azure que necesitan tener una identity en el entra porque necesitan autenticarse sobre otros recursos de Azure
+
+# Asignacion de roles RBAC
+
+## Asignacion de roles Built-in
 
 * Hoy vamos a utilizar el CLI
 
@@ -72,3 +93,124 @@ az group create --name rg-az104-clase-02 --location westus
 * En el activity log tiene que aparecer una entrada "Create rol Assignent"
 
 <img width="384" height="163" alt="image" src="https://github.com/user-attachments/assets/b3495dce-8bc3-4bca-91b1-f64c248815c6" />
+
+* Este rol que acabamos que acabamos de asignar a un companiero es un rol RBAC
+* El rol de Contributor sobre el RG le permite al otro usuario hacer lo que quiera sobre ese RG
+
+* Existen roles BuiltIN
+  * Owner
+  * Contributor
+  * Reader
+  * Virtual Machine Contributor
+* Existen los roles cutom (creados por el administador)
+
+## Asignaciones de Roles Custom
+ 
+* Veamos por ejemplo uno como Virtual Machine Contributor (lo mejor es ver el json)
+
+```
+{
+    "id": "/providers/Microsoft.Authorization/roleDefinitions/9980e02c-c2be-4d73-94e8-173b1dc7cf3c",
+    "properties": {
+        "roleName": "Virtual Machine Contributor",
+        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they're connected to.",
+        "assignableScopes": [
+            "/"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Authorization/*/read",
+                    "Microsoft.Compute/availabilitySets/*",
+                    "Microsoft.Compute/locations/*",
+                    "Microsoft.Compute/virtualMachines/*",
+                    "Microsoft.Compute/virtualMachineScaleSets/*",
+                    "Microsoft.Compute/cloudServices/*",
+                    "Microsoft.Compute/disks/write",
+                    "Microsoft.Compute/disks/read",
+                    "Microsoft.Compute/disks/delete",
+                    "Microsoft.Compute/hostgroups/write",
+                    "Microsoft.Compute/hostgroups/hosts/write",
+                    "Microsoft.DevTestLab/schedules/*",
+                    "Microsoft.Insights/alertRules/*",
+                    "Microsoft.Network/applicationGateways/backendAddressPools/join/action",
+                    "Microsoft.Network/loadBalancers/backendAddressPools/join/action",
+                    "Microsoft.Network/loadBalancers/inboundNatPools/join/action",
+                    "Microsoft.Network/loadBalancers/inboundNatRules/join/action",
+                    "Microsoft.Network/loadBalancers/probes/join/action",
+                    "Microsoft.Network/loadBalancers/read",
+                    "Microsoft.Network/locations/*",
+                    "Microsoft.Network/networkInterfaces/*",
+                    "Microsoft.Network/networkSecurityGroups/join/action",
+                    "Microsoft.Network/networkSecurityGroups/read",
+                    "Microsoft.Network/publicIPAddresses/join/action",
+                    "Microsoft.Network/publicIPAddresses/read",
+                    "Microsoft.Network/virtualNetworks/read",
+                    "Microsoft.Network/virtualNetworks/subnets/join/action",
+                    "Microsoft.RecoveryServices/locations/*",
+                    "Microsoft.RecoveryServices/Vaults/backupFabrics/backupProtectionIntent/write",
+                    "Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/*/read",
+                    "Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/read",
+                    "Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/protectedItems/write",
+                    "Microsoft.RecoveryServices/Vaults/backupPolicies/read",
+                    "Microsoft.RecoveryServices/Vaults/backupPolicies/write",
+                    "Microsoft.RecoveryServices/Vaults/read",
+                    "Microsoft.RecoveryServices/Vaults/usages/read",
+                    "Microsoft.RecoveryServices/Vaults/write",
+                    "Microsoft.ResourceHealth/availabilityStatuses/read",
+                    "Microsoft.Resources/deployments/*",
+                    "Microsoft.Resources/subscriptions/resourceGroups/read",
+                    "Microsoft.SerialConsole/serialPorts/connect/action",
+                    "Microsoft.SqlVirtualMachine/*",
+                    "Microsoft.Storage/storageAccounts/listKeys/action",
+                    "Microsoft.Storage/storageAccounts/read",
+                    "Microsoft.Support/*"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
+```
+
+* Si quiero armar un rol personalizado que no esta contemplado entre los que ya vienen armado voy a armar un json
+
+* Ejemplo
+
+```
+Quiero armar un rol RBAC de Azure que solamente permtia crear storage accounts en un resource group y no pueda hacer anda mas. Armame el JSON
+```
+
+> [!NOTE]
+> Antes de hacer esto en la practica siempre me tengo que fijar si no existe ya un rol que lo haga
+
+* LA IA me devuelve
+
+```
+{
+  "Name": "Storage Account Creator",
+  "IsCustom": true,
+  "Description": "Permite crear Storage Accounts en un Resource Group, sin permisos adicionales.",
+  "Actions": [
+    "Microsoft.Storage/storageAccounts/read",
+    "Microsoft.Storage/storageAccounts/write"
+  ],
+  "NotActions": [],
+  "DataActions": [],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME>"
+  ]
+}
+
+```
+
+* Podemos crear este rol en Add Custom Role con el json
+
+<img width="347" height="127" alt="image" src="https://github.com/user-attachments/assets/de668146-a7a5-4370-996e-7125917451a5" />
+
+* En algunos entornos se ve que ya hay algunos custom roles ya creados
+
+<img width="2027" height="81" alt="image" src="https://github.com/user-attachments/assets/cc37ed75-313a-44a3-a411-0c9aa7b7c16f" />
