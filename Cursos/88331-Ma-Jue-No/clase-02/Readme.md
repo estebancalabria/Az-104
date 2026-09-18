@@ -19,12 +19,15 @@
 * Monitoreo
 * Defende
 
+---
+
 # Hoy Vamos a ver
 
 * Usuarios
 * Permisos RBAC
 * ...tal vez algo de policies
-* Creacion de VMs
+
+---
 
 # Microsoft Entra
 
@@ -44,6 +47,8 @@
         * Aplicaciones conocidas de terceros que puedo instalar en mi organizacion y quiero que autentiquen con los usuarios de mi tennant
   * Managed Identities
       * Recusos de Azure que necesitan tener una identity en el entra porque necesitan autenticarse sobre otros recursos de Azure
+
+---
 
 # Asignacion de roles RBAC
 
@@ -103,6 +108,8 @@ az group create --name rg-az104-clase-02 --location westus
   * Reader
   * Virtual Machine Contributor
 * Existen los roles cutom (creados por el administador)
+
+---
 
 ## Asignaciones de Roles Custom
  
@@ -214,3 +221,38 @@ Quiero armar un rol RBAC de Azure que solamente permtia crear storage accounts e
 * En algunos entornos se ve que ya hay algunos custom roles ya creados
 
 <img width="2027" height="81" alt="image" src="https://github.com/user-attachments/assets/cc37ed75-313a-44a3-a411-0c9aa7b7c16f" />
+
+---
+
+# ID Governance
+
+* Requerimiento
+  * Usuario con licencia P2
+
+<img width="2390" height="1350" alt="image" src="https://github.com/user-attachments/assets/d970beb0-4938-4735-b85c-6695f0ec1e2d" />
+
+ 
+* ID Governance
+  * PIM
+    * En Entra la buena practica no es asignarle un Rol a un usuario fijo (Ej: Juan Perez es un VM Contributor siempre)
+    * La idea es que un usuario tenga los roles que necesita comoo "elegibles" y cada vez que el usuario tiene un ticket o tarea que necesita un rol va al PIM y lo solicita
+    * Ese rol se le va a asingar por un tiempo X
+    * Puede ser que la asignacion de ese rol requiera la asignacion de un par
+    * Es un workflow de aprobacion para la asignacion de permisos
+  * Conditional Access
+    * Definis politicas mediante la cuales dependiendo
+        * De donde se logue el usuario
+        * Si lo hace desde un dispositivo confiable con el onboarding en intune
+        * Que app accede
+        * Desde que parte del mundo
+        * El riesgo
+        * ...
+     * Bloquearle el acceso
+     * Pedirle un MFA adiccional
+   * Access Reviews
+      * Un control periodico de acceso de usuarios para detectar usuarios Stale (que no se loguean mas pero quedo el usuario creado)
+      * Para depurar usuarios que no estan mas activos
+
+# Proxima Clase
+
+* Policies / Policy
