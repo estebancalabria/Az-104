@@ -157,15 +157,8 @@ Creame una policy de Azure que no pemita crear resource groups salvo que comienz
 * Me crea
 
 ```json
-{
-  "properties": {
-    "displayName": "Az-104 Clase 3 - Permitir solo Resource Groups con prefijo rg-",
-    "policyType": "Custom",
+ {
     "mode": "All",
-    "description": "Deniega la creación de grupos de recursos cuyo nombre no comience por rg-",
-    "metadata": {
-      "category": "Governance"
-    },
     "policyRule": {
       "if": {
         "allOf": [
@@ -186,12 +179,12 @@ Creame una policy de Azure que no pemita crear resource groups salvo que comienz
       }
     }
   }
-}
 ```
 
-* Con este JSON voy a crear una definicion
+* Con este JSON voy a crear una definicion de Policy
+* Una vez creada voy a el boton Assing Policy para implementarla en mi subscripcion
 
-
+<img width="209" height="74" alt="image" src="https://github.com/user-attachments/assets/5a04f047-093e-42d5-91d4-cdf595d2ad0b" />
 
 ---
 
