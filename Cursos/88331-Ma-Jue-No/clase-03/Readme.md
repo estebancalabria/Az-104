@@ -187,5 +187,8 @@ Creame una policy de Azure que no pemita crear resource groups salvo que comienz
 <img width="209" height="74" alt="image" src="https://github.com/user-attachments/assets/5a04f047-093e-42d5-91d4-cdf595d2ad0b" />
 
 ---
+# BREAK
+# En 20 minutos volves
+---
 
 # Entender un poco mas a Azure
