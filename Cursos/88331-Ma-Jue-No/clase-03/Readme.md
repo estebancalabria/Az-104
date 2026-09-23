@@ -232,3 +232,7 @@ Creame una policy de Azure que no pemita crear resource groups salvo que comienz
 * Para soporte
   * Ir al recursor "Help + support" -> "Create a Support Request"
 
+# Proxima Clase
+
+* Nos toca IAC (Infraestructura como codigo ARM Templates / Bicep Templates)
+* Empezamos con Networking
