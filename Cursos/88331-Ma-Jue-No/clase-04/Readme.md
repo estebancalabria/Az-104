@@ -31,7 +31,9 @@
  
 ---
 
-# ARM Templates / Bicep Templates
+# IAC (Infraestructura como codigo)
+
+## ARM Templates / Bicep Templates
 
 * Setup
   * Creamos el RG
@@ -145,5 +147,94 @@ Con este json creo el archivo template-un-disco-full.json
 ```
 
 * Ahora hacemos un deploy con ese json
+
+## Bicep Template
+
+* Vamos a convertir el primer template en un template bicep (parece una especie de diccionario de python)
+
+```bicep
+param diskName string = 'disk-bicep'
+param location string = 'westus'
+
+resource disk 'Microsoft.Compute/disks@2025-01-02' = {
+  name: diskName
+  location: location
+  sku: {
+    name: 'StandardSSD_LRS'
+  }
+  properties: {
+    creationData: {
+      createOption: 'Empty'
+    }
+    diskSizeGB: 1024
+    encryption: {
+      type: 'EncryptionAtRestWithPlatformKey'
+    }
+    dataAccessAuthMode: 'None'
+    networkAccessPolicy: 'AllowAll'
+    publicNetworkAccess: 'Enabled'
+  }
+}
+```
+
+* Lo guardamos en un archivo template-un-disco-full.bicep
+
+* Si tengo instala la extension bicen en vscode tengo colorcitos y auto completado
+
+ <img width="218" height="110" alt="image" src="https://github.com/user-attachments/assets/70b68378-d924-4fcc-ae7d-71efc801ab0e" />
+
+* Primero lo subimos al CLI
+
+<img width="326" height="125" alt="image" src="https://github.com/user-attachments/assets/6a12fba1-f9f3-4e3f-952e-0c31614b4bcd" />
+
+
+* Lo desplegamos desde el cli
+
+```bash
+az deployment group create --resource-group rg-az104-clase-04 --template-file ./template-un-disco-full.bicep
+```
+
+## Terraform Template
+
+* No son de microsoft
+* Es una tecnologia que permite definir la infraestructura para varios Cloud
+
+```
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+
+variable "location" {
+  type    = string
+  default = "westus"
+}
+
+variable "disk_name" {
+  type    = string
+  default = "disk-01"
+}
+
+resource "azurerm_managed_disk" "disk" {
+  name                 = var.disk_name
+  location             = var.location
+  resource_group_name  = "rg-example"
+  storage_account_type = "StandardSSD_LRS"
+  disk_size_gb         = 1024
+  create_option        = "Empty"
+}
+```
+
+---
+# BREAK 
+Hasta y 45
+---
 
 # Redes
