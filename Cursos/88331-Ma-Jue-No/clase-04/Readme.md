@@ -85,5 +85,65 @@
   ]
 }
 ```
+Con este json creo el archivo template-un-disco-full.json
+
+> [!NOTA]
+> Los template son idempotentes : los podes ejecutar varias veces y siempre obtenes el mismo resultado. Si hay parte de la infraestructura que ya existe solo crea lo que falta\
+
+* Busco la opcion "Deploy Custom Template"
+
+<img width="408" height="35" alt="image" src="https://github.com/user-attachments/assets/17a96747-f0ba-45d9-8702-7480a529dc3f" />
+
+* Elegir "Build your own template in the editor"
+
+* Cargar en la interfaz copiando y pegando o haciendo load file el template que esta mas arriba
+
+* Crear el disco
+
+## Crear 10 discos de una
+
+* Ahora vamos a crear 10 duscos de una con este template
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "westus"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2025-01-02",
+      "type": "Microsoft.Compute/disks",
+      "name": "[format('disk-{0}', format('{0:00}', copyIndex(1)))]",
+      "location": "[parameters('location')]",
+      "copy": {
+        "name": "diskCopy",
+        "count": 10
+      },
+      "sku": {
+        "name": "StandardSSD_LRS"
+      },
+      "properties": {
+        "creationData": {
+          "createOption": "Empty"
+        },
+        "diskSizeGB": 1024,
+        "encryption": {
+          "type": "EncryptionAtRestWithPlatformKey"
+        },
+        "dataAccessAuthMode": "None",
+        "networkAccessPolicy": "AllowAll",
+        "publicNetworkAccess": "Enabled"
+      }
+    }
+  ]
+}
+```
+
+* Ahora hacemos un deploy con ese json
 
 # Redes
