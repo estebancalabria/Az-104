@@ -103,5 +103,54 @@ Set-Content -Path "C:\inetpub\wwwroot\iisstart.htm" -Value "Hola desde webserver
 ```
 > Cambiar Hola desde webserver--01
 
+* Vamos a crear el Load Balancer
+ * Basics
+   * Tipo : Standar Load Balancer
+   * Name : lb-webservers-westus
+   * SKU : Standard
+   * Tipo : Public
+   * Tier : Regional
+ * Frontend IP Configuration
+     * Name: fe-pip-lb-webserrvers-westus
+        * Tiene una Public IP Asociada : pip-lb-webserrvers-westus
+ * Backend Pool
+     * Name : be-lb-webservers-westus
+     * Elijo la vnet de mi laboratorio
+     * Agrego las dos maquinas virtuales
+* Creamos nuestro Load Balancer
 
+* Crear las Regla de Balanceo
+  * Que es
+     * Estas reglas basicamente dicen lo siguiente:
+     * Cuando recibas una peticion a la ip publica del load balancer redireccionala a una maquina del "Backend Pool" (Grupo de Vms)
+     * Para saber que maquinas responden utiliza un heath probe que es un robot que periodicamente chequea en un puerto si la maquina esta viva
+     * Con Helth Probe se evita enviar peticiones a maquinas que no responden
+   * Datos
+     * Name :lbrule-lb-webservers-westus
+     * Frontend IP Address : fe-pip-lb-webserrvers-westus
+     * Backend Pool : be-lb-webservers-westus
+     * De Puerto : 80
+     * A Puerto : 80
+     * Health Probe
+       * Name: hp-lb-webservers-wetus
+       * Protocol : TCP
+       * Port : 80
+       * Cada : 5segundos
+
+  * Vamos a ver la MAGIA
+    * Buscar la ip publica del loas balancer
+ 
+ * A veces me dice
+
+<img width="179" height="101" alt="image" src="https://github.com/user-attachments/assets/a25b8c61-b421-44f3-a678-25f39fe4bfda" />
+
+ * Si le doy f5 como un condendo dice
+  
+<img width="158" height="84" alt="image" src="https://github.com/user-attachments/assets/b8dc7350-f2d5-457d-807b-64dec67c743c" />
+
+* Borremoslas IP publicas de las VM
+       
+---
+BREAK HASTA y 10
+---
 
