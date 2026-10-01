@@ -1,4 +1,4 @@
-# Clase Seis - 1 de Octubre del 2026
+<img width="1358" height="2268" alt="image" src="https://github.com/user-attachments/assets/4a90e272-cb49-45a1-bc88-0828ce16a38f" /># Clase Seis - 1 de Octubre del 2026
 
 # Repaso
 
@@ -11,6 +11,40 @@
   * VNet Peering
   
 # Networking
+
+* Hoy queremos instalar un Load Balancer
+
+```mermaid
+flowchart TB
+
+    User([👤 User])
+
+    subgraph RG["az104-06-rg6"]
+
+        LB["Load Balancer<br/>az104-lb<br/>az104-lbpip"]
+
+        subgraph VNET["az104-06-vnet1 (10.60.0.0/22)"]
+
+            subgraph S0["Subnet0<br/>10.60.0.0/24"]
+                VM0["az104-06-vm0<br/>10.60.0.4"]
+            end
+
+            subgraph S1["Subnet1<br/>10.60.1.0/24"]
+                VM1["az104-06-vm1<br/>10.60.1.4"]
+            end
+
+            Backend["Backend Pool"]
+
+            Backend --- VM0
+            Backend --- VM1
+        end
+    end
+
+    User --> LB
+    LB --> Backend
+
+    VM0 <--> VM1
+```
 
 ## Setup
 
@@ -67,3 +101,7 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 ```
 Set-Content -Path "C:\inetpub\wwwroot\iisstart.htm" -Value "Hola desde webserver--00"
 ```
+> Cambiar Hola desde webserver--01
+
+
+
