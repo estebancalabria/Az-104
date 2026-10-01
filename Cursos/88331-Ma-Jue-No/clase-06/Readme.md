@@ -1,4 +1,4 @@
-<img width="1358" height="2268" alt="image" src="https://github.com/user-attachments/assets/4a90e272-cb49-45a1-bc88-0828ce16a38f" /># Clase Seis - 1 de Octubre del 2026
+# Clase Seis - 1 de Octubre del 2026
 
 # Repaso
 
