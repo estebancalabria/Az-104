@@ -154,3 +154,14 @@ Set-Content -Path "C:\inetpub\wwwroot\iisstart.htm" -Value "Hola desde webserver
 BREAK HASTA y 10
 ---
 
+* El Loab Balancer no es la unica opcion para Balanceo de Carga
+  * Se usa para balancear trafico generico
+  * Funciona a nivel capa 4 de osi
+  * Es un recurso economico
+* Pero si tenes una pagina web (como hicimos en el lab) y queres hacer reglas de balanceo a nivel capa 7
+  * Ejemplo Los request /api van a una vitual, los request /image van a otra, el esto va a otro backend pool
+  * En ese caso hay usar otro recurso
+
+  ## Application Gateway
+
+* El Appication Gateway tiene que ir en su propia subnet independiente y no tiene que compartir recursos con nadie mas en esa subnet
