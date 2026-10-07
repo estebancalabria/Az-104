@@ -183,3 +183,26 @@ az group create --name rg-az104-clase-07 --location westus
 ---
 # Break - hasta y 40
 ---
+
+### File Shares
+
+* Creamos una VM y nos conectamos por RDP
+
+* Creamos un storage account si inicie el laboratorio recien
+
+* (SA) -> Data Storage -> Crear un "Classic File Share"
+
+* En el overview.. mirar el boton connect que dice un script de powershell para ejecutar en la maquina donde queremos montar ese almacenamiento
+
+* Pueden ejecutar el mismo script en su maquina y ver como el disco se comparte
+
+---
+
+## Control de Acceso a un SA
+
+* Acceso Publico
+* Acceso por SAS
+* Acceso dentro de una VNet
+  * Como configuramos quien tiene acceso al Storage Account dentro de una VNet
+   * (SA) -> Security + Networking -> Networking
+   * Aca se configura como el NSG del Stroage Account
