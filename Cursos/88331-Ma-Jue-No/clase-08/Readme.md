@@ -71,8 +71,12 @@
       * Azure tiene su registro de contenedores privado
         * Container registries (acr)
 
-        
-          
+---
+# Break hasta y 15
+# Reiniciar el LAB
+---
+
+# Virtual Machines
   
 
 
