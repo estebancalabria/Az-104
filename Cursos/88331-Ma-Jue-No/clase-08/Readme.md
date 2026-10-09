@@ -77,6 +77,57 @@
 ---
 
 # Virtual Machines
-  
 
+## Setup
+
+* Crear un grupo de Recursos
+
+```
+New-AzResourceGroup -Name rg-az104-clase-ocho -Location Westus 
+```
+
+* Crear una VM
+
+## Forma de Conexion a la VM
+ 
+* Distintas formas de conectarnos a la VM
+ * RDP
+   * La mas comun
+   * Por IP Publica
+      * Si la conexion esta abierta siempre estamos expuestos a ataques del exterior -> Inseguro
+      * JIT -> Just In Time
+         * Habiliamos la conexion cada vez que me piden conectar
+         * Requiere que el usuario se conecte en portal, vaya a la vm que se quiere conectar y en connect ponga el boton "Request JIT"
+         * Se puede visualizar las maquinas que tengo trabajando con JIT en:
+            * Defender for cloud -> Workload Protections
+   * Por VPN
+       * Crean un VPN Gateway
+       * Tu maquina on Premise se mete en esa VPN
+       * Te conectas por RDP cona la IP privada (La VM no tiene ip publica)
+       * (Requiere toda la infraestructura de manejar una VPN)
+  * Por Bastion
+     * Via Browser desde el portal
+     * Es un recurso Caro
+     * No necesita tener IP Publica
+     * Te podes autenticar a la VM desde el navegador con Microsoft Entra
+     * El bastion es un recurso de Azure que da acceso a 1 o varias VM y esta en su propia subnet que se llama AzureBastionSubnet
+     * Se puede crear automaticamente desde una VM o podemos ir a Bastions y crear el recurso
+   * Ejecutar comandos de Powershell en la VM sin RDP desde el portal
+     * (VM) -> Operations -> Run Command
+        
+## Escalado de VMs
+
+* Esclado Vertical
+  * Cambiarle el tamanio
+     * Manualmente
+       * (VM) -> Availability + Scale -> Size
+     * O por regla
+     * Si vm sola hacemos escalado Vertical
+ 
+* Escalado Horizontal
+  * Crear un Virtual Machine Scale Set
+   * Un conjunto de maquinas virtuales con la misma caracteristica detras de un load balancer
+   * La cantidad de maquinas virtuales no es fija, sino que se puede determinar dinamicamente
+   * Definir manualmente o mediante reglas la cantidad de maquinas virtuales de un VMSS se llama Escalado Horizontal
+   * Los VMSS se usan en escenarios de alta disponibilidad
 
