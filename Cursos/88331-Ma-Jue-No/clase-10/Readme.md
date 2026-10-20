@@ -56,3 +56,62 @@ node server.js
 http://localhost:3000/
 ```
 
+* Creamos el Container Registries (acr)
+ * Name : acr4trainner (cada uno le pone un nombre unico)
+ * Luego ir a Settings -> Access Keys -> Check Admin User
+
+
+* Crear el archivo Dockerfile en la carpeta de nuestra app
+
+```
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install --omit=dev
+
+COPY server.js .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+```
+
+> [!NOTE]
+> Este archivo de texto tiene las instrucciones para construir una omagen docker
+
+
+* Vamos a subir el server.js, package.json y el Dockerfile a una carpeta en el cli de Azure
+
+```
+PS /home/xxxx> md nodeapp
+PS /home/xxxx> cd nodeapp
+```
+
+* Subir nuestra app al acr
+
+```
+az acr build --registry acr4trainner --image app-minimal . 
+```
+
+> [!NOTE]
+> No se olviden el . al final sino no anda
+
+* Crear nuestro container App (ACA)
+ * Basics
+   * Name : aca-app-minimal
+   * No completo nada mas
+  * Container
+    * Elijo el acr del desplegable
+    * Elijo la imagen que subi  del desplegable
+    * Version : latest
+  * Ingress
+    * Enabled
+    * Accept Trafic From Anyware
+    * Target Port : 3000
+ 
+> [!NOTE]
+> Si tira el error "Cannot access ACR 'acr4trainner.azurecr.io' because admin credentials on the ACR are disabled." hay que habilitarle las credenciales al acr
+
+* Desplegar el recurso y probarlo a partir de la IP publica del container app
