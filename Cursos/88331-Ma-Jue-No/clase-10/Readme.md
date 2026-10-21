@@ -114,4 +114,120 @@ az acr build --registry acr4trainner --image app-minimal .
 > [!NOTE]
 > Si tira el error "Cannot access ACR 'acr4trainner.azurecr.io' because admin credentials on the ACR are disabled." hay que habilitarle las credenciales al acr
 
+---
+BREAK HASTA  Y 30
+---
+
+# App para administrar Kubernetes
+
+* Headlamp
+  * https://headlamp.dev/
+* FreeLens
+  * https://freelensapp.github.io/
+
+# Kubernetes
+
+* Vamos a crear nuestro Kubernetes Services
+  * Creamos un cluster de Kubernetes
+  * Name : aks4trainner
+  * En Integrations conectarlo con el Container Registrie
+  * En advanced se ve el nombre del RG que crea donde Kubernetes administra todo
+
+
+* Creamos el archivo Services.yml
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: express-minimal-service
+  labels:
+    app: express-minimal
+spec:
+  selector:
+    app: express-minimal
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: LoadBalancer
+```
+
+* Creamos el archivo Deployment.yml
+
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-minimal
+  labels:
+    app: express-minimal
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: express-minimal
+  template:
+    metadata:
+      labels:
+        app: express-minimal
+    spec:
+      containers:
+      - name: express-minimal
+        image: <url-acr>:<nombre-imagen>:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+```
+
+* Loguearme en aks
+
+```
+ az aks get-credentials --resource-group rg-az104-clase-10  --name aks4trainner                     
+```
+
+* Desplegamos la app
+
+```
+kubectl apply -f ./Deployment.yaml
+kubectl apply -f ./Service.yaml
+```
+
 * Desplegar el recurso y probarlo a partir de la IP publica del container app
+
+----
+
+# Monitoring en Azure
+
+* Logs del Recurso de Azure
+  * Activity Logs
+    * Tiempo de Retencion 90 dias
+  * Log Analitics Workspace
+    * Base de datos de Logging Persistente
+  * Application Insights
+    * Es un log (Que graba sobre log analitics workspace) y tiene una vista e interfaz perticular para grabar logs desde apps
+    * Es un servicio para el desarrollador
+* Logs del Entra
+  * Sign-In Logs
+  * Audit Logs
+
+
+* Monitor
+  * Es el recurso de Azure que pemite recopiar, analizar y vislaizar metricas
+  * El el monitor se pueden consultar tambien los Log anatics Workspace y activity Logs
+  * Los logs se peuden consultar mediante un lenguaje que se llama KQL
+ 
+* Defender
+  * Defender for Cloud
+   * Es un recurso pago que:
+     * Genera sugerencias de seguridad
+     * Va generando logs adicionales de seguridad
+
+* Metricas y Alertas
+  * Sobre los logs podemos configurar altertas que periodicamente consultan estos logs y disparan una notificacion o una automatizacion
