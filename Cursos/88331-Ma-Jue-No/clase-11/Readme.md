@@ -84,14 +84,15 @@
 
 * Ir al Workspace y fijarse que aparecen muchas tablas nuevas que fueron creadas por el AMA
     * Perf
-    * VMCompupter
-    * VMProcess
+    * VMCompupter (No se llena mas)
+    * VMProcess (No se llena mas)
     * ...
 
 * Las Podemos consultar por KQL pero seguro todavia estan vacias
 
 * Vamos a ir al DCR (Data Collection Rule) para ver que se copia
   * Veo que solo copia performance counters
+        * Se guardan en la tablas Perf (oldStyle) y InsightsMetrics (newStyle)
   * Vamos a agregar para que ademas copie los Windows Event Logs en el Worspace
 
 > [!NOTE]
@@ -108,3 +109,20 @@ Heartbeat
 Hasta y 35
 De paso vemos si se graba en el LOG
 ---
+
+* Vamos a ver despues del break si se guardo algo en:
+   * Event : Esta si tiene registros
+   * Perf : No hay nada, esta vacia
+   * InsightsMetrics : Es la que reemplaza a Perf, esta llena de datos
+         * Aca se guardan los Performance Counters
+
+* KQL no solo te permite ver tablas sino que tiene la posibilidad de graficar
+
+```
+InsightsMetrics
+| where TimeGenerated > ago(30m)
+| where Name == "UtilizationPercentage"
+| summarize AverageUtilization = avg(Val)
+    by bin(TimeGenerated, 5m), Computer
+| render timechart
+```
