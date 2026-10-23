@@ -126,3 +126,41 @@ InsightsMetrics
     by bin(TimeGenerated, 5m), Computer
 | render timechart
 ```
+
+---
+# Reiniciar el LAB
+---
+
+* Crear el RG y una VM
+
+* Ir  a Monitoring -> Metrics
+   * Explorar las metricas sobre las VM que aparecen
+   * Estas metricas aparecen aunque no tengamos el AMA instalado
+ 
+* Si vamos a Monitor -> Metrics tambien podes explorar metricas para cada recurso de Azure
+
+* Vamos a programar una alerta sobre la VM
+   * Programarse sobre Eventos
+   * Programarse sobre Metricas
+
+> [!NOTE]
+> Las alertas estan relacionadas a un log o a una metrica (Activity Log o Log Analitics Workspace). En este caso vamos a hacerla sobre el ActivityLog
+
+* Creo una alerta en la VM
+   * See Al Signals
+      * Busco "Shut Down"
+      * Completo los parametros de la alerta
+   * Acciones
+      * Notificar una persona  (por mail / sms)
+      * Podemos ejecutar una automatizacion
+    
+
+* Vamos tambien a EMULAR crear una alerta basada en metricas solo para ver que tambien se puede
+
+* Me hace validar el mail y me muestra 
+
+<img width="717" height="274" alt="image" src="https://github.com/user-attachments/assets/e2d6f97e-80b9-43bb-bdf7-b92c16057858" />
+
+* Sale alerta de este tipo que te llega por mail
+
+<img width="715" height="264" alt="image" src="https://github.com/user-attachments/assets/03dd6e8c-d8a8-4375-9ca7-67f021321ca9" />
