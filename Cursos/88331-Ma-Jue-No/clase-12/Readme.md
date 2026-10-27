@@ -68,5 +68,23 @@ New-AzVm -Credential $cred -Image MicrosoftWindowsServer:WindowsServer:2016-data
 
 ```
  $nsg = Get-AzNetworkSecurityGroup -Name nsg-az104-clase-12    
+
 Add-AzNetworkSecurityRuleConfig -Name Allow-RDP -Description "Permitir RDP" -Priority 100 -Direction inbound -SourceAddressPrefix * -SourcePortRange * -DestinationAddressPrefix 10.0.0.4 -DestinationPort 3389 -NetworkSecurityGroup $nsg -Protocol tcp -Access Allow
+
+Set-AzNetworkSecurityGroup -NetworkSecurityGroup $nsg          
 ```
+
+* Me conecto por RDP y creo un archivo de texto en el escritorio de la VM
+
+* Crear el recurso "Recovery Service Vault"
+
+* Vamos a Protected Items -> Backup Items ( o a Getting Started -> Backup)
+ * Hacemos el Backup de la VM
+
+* Ir a la vm Backuapeada en Backup Items e Iniciar un backup inicial manual
+
+
+--
+# BEAK
+Hasta menos 5
+--
