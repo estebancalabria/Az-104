@@ -84,7 +84,15 @@ Set-AzNetworkSecurityGroup -NetworkSecurityGroup $nsg
 * Ir a la vm Backuapeada en Backup Items e Iniciar un backup inicial manual
 
 
---
+---
 # BEAK
 Hasta menos 5
---
+---
+
+* Borro el archivo, recupero la VM y el archivo aparece
+
+---
+
+# Microsoft Foundry
+
+* Los servicios de IA que trae Azure (
